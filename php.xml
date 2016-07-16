@@ -62,6 +62,11 @@ It's mixed with and based on PHP AutoComplete by Geoffray Warnants - http://www.
 				<Param name="[int $accepted_args=1]]"/>
 			</Overload>
 		</KeyWord>
+		<KeyWord name="add_magic_quotes" func="yes">
+			<Overload retVal="array" descr="WP: Walks an array while sanitizing the contents. Uses global: (object) $wpdb to sanitize values.">
+				<Param name="array $array"/>
+			</Overload>
+		</KeyWord>
 		<KeyWord name="add_meta_box" func="yes">
 			<Overload retVal="void" descr="WP: 
 It allows plugin developers to add meta boxes to the administrative interface.
