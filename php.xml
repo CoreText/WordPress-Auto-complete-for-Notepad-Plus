@@ -12,6 +12,9 @@ It's mixed with and based on PHP AutoComplete by Geoffray Warnants - http://www.
 				<Param name="void"/>
 			</Overload>
 		</KeyWord>
+		<KeyWord name="_get_cron_array" func="yes">
+			<Overload retVal="false|array" descr="WP: Retrieve cron info array option."></Overload>
+		</KeyWord>
 		<KeyWord name="abs" func="yes">
 			<Overload retVal="number">
 				<Param name="mixed $number"/>
@@ -39,12 +42,12 @@ It's mixed with and based on PHP AutoComplete by Geoffray Warnants - http://www.
 			</Overload>
 		</KeyWord>
 		<KeyWord name="addslashes_gpc" func="yes">
-			<Overload retVal="string" descr="Adds slashes to escape strings.">
+			<Overload retVal="string" descr="WP: Adds slashes to escape strings.">
 				<Param name="string $gpc"/>
 			</Overload>
 		</KeyWord>
 		<KeyWord name="add_action" func="yes">
-			<Overload retVal="void" descr="Hooks a function on to a specific action.">
+			<Overload retVal="void" descr="WP: Hooks a function on to a specific action.">
 				<Param name="string $tag"/>
 				<Param name="callback $function_to_add"/>
 				<Param name="[int $priority=10"/>
@@ -52,37 +55,133 @@ It's mixed with and based on PHP AutoComplete by Geoffray Warnants - http://www.
 			</Overload>
 		</KeyWord>
 		<KeyWord name="add_filter" func="yes">
-			<Overload retVal="bool" descr="Hooks a function or method to a specific filter action.">
+			<Overload retVal="bool" descr="WP: Hooks a function or method to a specific filter action.">
 				<Param name="string $tag"/>
 				<Param name="callback $function_to_add"/>
 				<Param name="[int $priority=10"/>
 				<Param name="[int $accepted_args=1]]"/>
 			</Overload>
 		</KeyWord>
+		<KeyWord name="add_meta_box" func="yes">
+			<Overload retVal="void" descr="WP: 
+It allows plugin developers to add meta boxes to the administrative interface.
+This function should be called from the add_meta_boxes_{post_type} or 'add_meta_boxes' action.
+The former is preferable as it avoids triggering needless callbacks for other post types. 
+These actions were introduced in Version 3.0; in prior versions, use 'admin_init' instead.">
+				<Param name="string $id"/>
+				<Param name="string $title"/>
+				<Param name="callback $callback"/>
+				<Param name="[string $screen='null'"/>
+				<Param name="[string $context='advanced'"/>
+				<Param name="[string $priority='default'"/>
+				<Param name="[array $callback_args=null]]]]"/>
+			</Overload>
+		</KeyWord>
+		<KeyWord name="wp_add_inline_style" func="yes">
+			<Overload retVal="void" descr="WP: 
+Adds extra CSS.
+Works only if the stylesheet has already been added. Accepts a string $data containing the CSS. 
+If two or more CSS code blocks are added to the same stylesheet $handle, 
+they will be printed in the order they were added, 
+i.e. the latter added styles can redeclare the previous.">
+				<Param name="string $handle"/>
+				<Param name="string $data"/>
+			</Overload>
+		</KeyWord>
+		<KeyWord name="wp_nonce_field" func="yes">
+			<Overload retVal="string" descr="WP: Retrieves or displays the nonce hidden form field.">
+				<Param name="[string $action=-1"/>
+				<Param name="[string $name='_wpnonce'"/>
+				<Param name="[bool $reffer=true"/>
+				<Param name="[bool $echo=true]]]]"/>
+			</Overload>
+		</KeyWord>
+		<KeyWord name="add_post_meta" func="yes">
+			<Overload retVal="bool|int" descr="WP: 
+Adds a custom field (also called meta-data) to a specified post which could be of any post type. 
+A custom field is effectively a key–value pair.
+
+Note that if the given key already exists among custom fields of the specified post, 
+another custom field with the same key is added unless the $unique argument is set to true, 
+in which case, no changes are made.">
+				<Param name="int $post_id"/>
+				<Param name="string $meta_key"/>
+				<Param name="mixed $meta_value"/>
+				<Param name="[bool $unique=false]"/>
+			</Overload>
+		</KeyWord>
+		<KeyWord name="wp_verify_nonce" func="yes">
+			<Overload retVal="bool|int" descr="WP: 
+Verify that a nonce is correct and unexpired with the respect to a specified action.
+The function is used to verify the nonce sent in the current request usually accessed by the $_REQUEST PHP variable.
+Boolean false if the nonce is invalid. Otherwise, returns an integer with the value of:
+    1 – if the nonce has been generated in the past 12 hours or less.
+    2 – if the nonce was generated between 12 and 24 hours ago.">
+				<Param name="string $nonce"/>
+				<Param name="[string|int $action=-1]"/>
+			</Overload>
+		</KeyWord>
 		<KeyWord name="add_option" func="yes">
-			<Overload retVal="bool" descr="Add a new option.">
+			<Overload retVal="bool" descr="WP: Add a new option.">
 				<Param name="string $option"/>
-				<Param name="[mixed $value"/>
+				<Param name="[mixed $args=array()] | [mixed $value"/>
 				<Param name="[mixed $deprecated"/>
 				<Param name="[bool $autoload=yes]]]"/>
 			</Overload>
 		</KeyWord>
+		<KeyWord name="add_option_whitelist" func="yes">
+			<Overload retVal="array" descr="WP: Add a new option whitelist.">
+				<Param name="array $new_options"/>
+				<Param name="[string|array $options='']"/>
+			</Overload>
+		</KeyWord>
+		<KeyWord name="add_options_page" func="yes">
+			<Overload retVal="string" descr="WP: Add sub menu page to the Settings menu.">
+				<Param name="string $page_title"/>
+				<Param name="string $menu_title"/>
+				<Param name="string $capability"/>
+				<Param name="string $menu_slug"/>
+				<Param name="[callback $function]"/>
+			</Overload>
+		</KeyWord>
 		<KeyWord name="add_query_arg" func="yes">
-			<Overload retVal="string" descr="Retrieve a modified URL query string.">
+			<Overload retVal="string" descr="WP: Retrieve a modified URL query string.">
 				<Param name="mixed $param1"/>
 				<Param name="mixed $param2"/>
 				<Param name="[mixed $uri]"/>
 			</Overload>
 		</KeyWord>
 		<KeyWord name="add_role" func="yes">
-			<Overload retVal="null|WP_Role" descr="Add role, if it does not exist.">
+			<Overload retVal="null|WP_Role" descr="WP: Add role, if it does not exist.">
 				<Param name="string $role"/>
 				<Param name="string $display_name"/>
 				<Param name="[array $capabilities=array()]"/>
 			</Overload>
 		</KeyWord>
+        <KeyWord name="add_settings_field" func="yes">
+			<Overload retVal="void" descr="WP: Register a settings field to a settings page and section.">
+				<Param name="int $id"/>
+				<Param name="string $title"/>
+				<Param name="string $callback"/>
+				<Param name="string $page"/>
+				<Param name="[string $section"/>
+				<Param name="[array $args]]"/>
+			</Overload>
+		</KeyWord>
+		<KeyWord name="add_settings_section" func="yes">
+			<Overload retVal="void" descr="WP: 
+Settings Sections are the groups of settings you see on WordPress settings pages with a shared heading.
+In your plugin you can add new sections to existing settings pages rather than creating a whole new page.
+This makes your plugin simpler to maintain and creates fewer new pages for users to learn.
+You just tell them to change your setting on the relevant existing page.">
+				<Param name="int $id"/>
+				<Param name="string $title"/>
+				<Param name="string $callback"/>
+				<Param name="string $page"/>
+			</Overload>
+		</KeyWord>
 		<KeyWord name="add_user_meta" func="yes">
-			<Overload retVal="bool" descr="Add meta data field to a user.">
+			<Overload retVal="bool" descr="WP: Add meta data field to a user.">
 				<Param name="int $user_id"/>
 				<Param name="string $meta_key"/>
 				<Param name="mixed $meta_value"/>
@@ -90,13 +189,13 @@ It's mixed with and based on PHP AutoComplete by Geoffray Warnants - http://www.
 			</Overload>
 		</KeyWord>
 		<KeyWord name="antispambot" func="yes">
-			<Overload retVal="string" descr="Converts email addresses characters to HTML entities to block spam bots.">
+			<Overload retVal="string" descr="WP: Converts email addresses characters to HTML entities to block spam bots.">
 				<Param name="string $email_address"/>
 				<Param name="[int $mailto=0]"/>
 			</Overload>
 		</KeyWord>
 		<KeyWord name="apache_child_terminate" func="yes">
-			<Overload retVal="bool" descr="Converts email addresses characters to HTML entities to block spam bots.">
+			<Overload retVal="bool" descr="WP: Converts email addresses characters to HTML entities to block spam bots.">
 				<Param name="void"/>
 			</Overload>
 		</KeyWord>
@@ -150,14 +249,14 @@ It's mixed with and based on PHP AutoComplete by Geoffray Warnants - http://www.
 			</Overload>
 		</KeyWord>
 		<KeyWord name="apply_filters" func="yes">
-			<Overload retVal="mixed" descr="Call the functions added to a filter hook.">
+			<Overload retVal="mixed" descr="WP: Call the functions added to a filter hook.">
 				<Param name="string $tag"/>
 				<Param name="mixed $value"/>
 				<Param name="mixed $var,..."/>
 			</Overload>
 		</KeyWord>
 		<KeyWord name="apply_filters_ref_array" func="yes">
-			<Overload retVal="mixed" descr="Execute functions hooked on a specific filter hook, specifying arguments in an array.">
+			<Overload retVal="mixed" descr="WP: Execute functions hooked on a specific filter hook, specifying arguments in an array.">
 				<Param name="string $tag"/>
 				<Param name="array $args"/>
 			</Overload>
@@ -552,18 +651,18 @@ It's mixed with and based on PHP AutoComplete by Geoffray Warnants - http://www.
 			</Overload>
 		</KeyWord>
 		<KeyWord name="author_can" func="yes">
-			<Overload retVal="bool" descr="Whether author of supplied post has capability or role.">
+			<Overload retVal="bool" descr="WP: Whether author of supplied post has capability or role.">
 				<Param name="int|object $post"/>
 				<Param name="string $capability"/>
 			</Overload>
 		</KeyWord>
 		<KeyWord name="backslashit" func="yes">
-			<Overload retVal="string" descr="Adds backslashes before letters and before a number at the start of a string.">
+			<Overload retVal="string" descr="WP: Adds backslashes before letters and before a number at the start of a string.">
 				<Param name="string $string"/>
 			</Overload>
 		</KeyWord>
 		<KeyWord name="balanceTags" func="yes">
-			<Overload retVal="string" descr="Will only balance the tags if forced to and the option is set to balance tags.">
+			<Overload retVal="string" descr="WP: Will only balance the tags if forced to and the option is set to balance tags.">
 				<Param name="string $text"/>
 				<Param name="[bool $force=false]"/>
 			</Overload>
@@ -803,12 +902,12 @@ It's mixed with and based on PHP AutoComplete by Geoffray Warnants - http://www.
 			</Overload>
 		</KeyWord>
 		<KeyWord name="category_description" func="yes">
-			<Overload retVal="string" descr="Retrieve category description.">
+			<Overload retVal="string" descr="WP: Retrieve category description.">
 				<Param name="[int $category_id]"/>
 			</Overload>
 		</KeyWord>
 		<KeyWord name="cat_is_ancestor_of" func="yes">
-			<Overload retVal="bool" descr="Check if a category is an ancestor of another category.">
+			<Overload retVal="bool" descr="WP: Check if a category is an ancestor of another category.">
 				<Param name="int|object $cat_to_check"/>
 				<Param name="int|object $the_child_cat"/>
 			</Overload>
@@ -1131,7 +1230,7 @@ It's mixed with and based on PHP AutoComplete by Geoffray Warnants - http://www.
 			</Overload>
 		</KeyWord>
 		<KeyWord name="clean_pre" func="yes">
-			<Overload retVal="string" descr="Accepts matches array from preg_replace_callback in wpautop() or a string.">
+			<Overload retVal="string" descr="WP: Accepts matches array from preg_replace_callback in wpautop() or a string.">
 				<Param name="array|string $matches"/>
 			</Overload>
 		</KeyWord>
@@ -1311,18 +1410,18 @@ It's mixed with and based on PHP AutoComplete by Geoffray Warnants - http://www.
 			</Overload>
 		</KeyWord>
 		<KeyWord name="count_many_users_posts" func="yes">
-			<Overload retVal="array" descr="Number of posts written by a list of users.">
+			<Overload retVal="array" descr="WP: Number of posts written by a list of users.">
 				<Param name="array $users"/>
 				<Param name="[string|array post_type=post]"/>
 			</Overload>
 		</KeyWord>
 		<KeyWord name="count_users" func="yes">
-			<Overload retVal="array" descr="Count number of users who have each of the user roles.">
+			<Overload retVal="array" descr="WP: Count number of users who have each of the user roles.">
 				<Param name="[string $strategy=time|memory]"/>
 			</Overload>
 		</KeyWord>
 		<KeyWord name="count_user_posts" func="yes">
-			<Overload retVal="int" descr="Number of posts user has written.">
+			<Overload retVal="int" descr="WP: Number of posts user has written.">
 				<Param name="int $user_id"/>
 			</Overload>
 		</KeyWord>
@@ -1512,15 +1611,15 @@ It's mixed with and based on PHP AutoComplete by Geoffray Warnants - http://www.
 			</Overload>
 		</KeyWord>
 		<KeyWord name="current_filter" func="yes">
-			<Overload retVal="string" descr="Retrieve the name of the current filter or action."></Overload>
+			<Overload retVal="string" descr="WP: Retrieve the name of the current filter or action."></Overload>
 		</KeyWord>
 		<KeyWord name="current_user_can" func="yes">
-			<Overload retVal="bool" descr="Whether current user has capability or role.">
+			<Overload retVal="bool" descr="WP: Whether current user has capability or role.">
 				<Param name="string $capability"/>
 			</Overload>
 		</KeyWord>
 		<KeyWord name="current_user_can_for_blog" func="yes">
-			<Overload retVal="bool" descr="Whether current user has a capability or role for a given blog.">
+			<Overload retVal="bool" descr="WP: Whether current user has a capability or role for a given blog.">
 				<Param name="int $blog_id"/>
 				<Param name="string $capability"/>
 			</Overload>
@@ -1911,17 +2010,24 @@ It's mixed with and based on PHP AutoComplete by Geoffray Warnants - http://www.
 			</Overload>
 		</KeyWord>
 		<KeyWord name="delete_user_meta" func="yes">
-			<Overload retVal="bool" descr="Remove metadata matching criteria from a user.">
+			<Overload retVal="bool" descr="WP: Remove metadata matching criteria from a user.">
 				<Param name="int $user_id"/>
 				<Param name="string $meta_key"/>
 				<Param name="[mixed $meta_value]"/>
 			</Overload>
 		</KeyWord>
 		<KeyWord name="delete_user_option" func="yes">
-			<Overload retVal="bool" descr="Delete user option with global blog capability.">
+			<Overload retVal="bool" descr="WP: Delete user option with global blog capability.">
 				<Param name="int $user_id"/>
 				<Param name="string $option_name"/>
 				<Param name="[bool $global=false]"/>
+			</Overload>
+		</KeyWord>
+		<KeyWord name="delete_post_meta" func="yes">
+			<Overload retVal="bool" descr="WP: Deletes all custom fields with the specified key, or key and value, from the specified post.">
+				<Param name="int $post_id"/>
+				<Param name="string $meta_key"/>
+				<Param name="[bool $meta_value='']"/>
 			</Overload>
 		</KeyWord>
 		<KeyWord name="dgettext" func="yes">
@@ -1931,7 +2037,7 @@ It's mixed with and based on PHP AutoComplete by Geoffray Warnants - http://www.
 			</Overload>
 		</KeyWord>
 		<KeyWord name="did_action" func="yes">
-			<Overload retVal="int" descr="Retrieve the number of times an action is fired.">
+			<Overload retVal="int" descr="WP: Retrieve the number of times an action is fired.">
 				<Param name="string $tag"/>
 			</Overload>
 		</KeyWord>
@@ -2078,20 +2184,31 @@ It's mixed with and based on PHP AutoComplete by Geoffray Warnants - http://www.
 			</Overload>
 		</KeyWord>
 		<KeyWord name="do_action" func="yes">
-			<Overload retVal="null" descr="Execute functions hooked on a specific action hook.">
+			<Overload retVal="null" descr="WP: Execute functions hooked on a specific action hook.">
 				<Param name="string $tag"/>
 				<Param name="[mixed $arg"/>
 				<Param name="[mixed $arg...]]"/>
 			</Overload>
 		</KeyWord>
 		<KeyWord name="do_action_ref_array" func="yes">
-			<Overload retVal="null" descr="Execute functions hooked on a specific action hook, specifying arguments in an array.">
+			<Overload retVal="null" descr="WP: Execute functions hooked on a specific action hook, specifying arguments in an array.">
 				<Param name="string $tag"/>
 				<Param name="array $arg"/>
 			</Overload>
 		</KeyWord>
+		<KeyWord name="do_settings_fields" func="yes">
+			<Overload retVal="null" descr="WP: Display settings fields in sections. Prints out the settings fields for a particular settings section.">
+				<Param name="string $page"/>
+				<Param name="string $section"/>
+			</Overload>
+		</KeyWord>
+		<KeyWord name="do_settings_sections" func="yes">
+			<Overload retVal="null" descr="WP: Prints out all settings sections added to a particular settings page.">
+				<Param name="string $page"/>
+			</Overload>
+		</KeyWord>
 		<KeyWord name="dynamic_sidebar" func="yes">
-			<Overload retVal="bool" descr="Display dynamic sidebar.">
+			<Overload retVal="bool" descr="WP: Display dynamic sidebar.">
 				<Param name="[mixed $index=1]"/>
 			</Overload>
 		</KeyWord>
@@ -2118,7 +2235,7 @@ It's mixed with and based on PHP AutoComplete by Geoffray Warnants - http://www.
 			</Overload>
 		</KeyWord>
 		<KeyWord name="email_exists" func="yes">
-			<Overload retVal="bool|int" descr="Checks whether the given email exists.">
+			<Overload retVal="bool|int" descr="WP: Checks whether the given email exists.">
 				<Param name="string $email"/>
 			</Overload>
 		</KeyWord>
@@ -2188,28 +2305,33 @@ It's mixed with and based on PHP AutoComplete by Geoffray Warnants - http://www.
 				<Param name="string $command"/>
 			</Overload>
 		</KeyWord>
+		<KeyWord name="esc_attr" func="yes">
+			<Overload retVal="string" descr="WP: Encodes the &lt, &gt, &amp;, quotes (less than, greater than, ampersand, double quote and single quote) characters. Will never double encode entities.">
+				<Param name="string $text"/>
+			</Overload>
+		</KeyWord>
 		<KeyWord name="esc_html" func="yes">
-			<Overload retVal="string" descr="Escaping for HTML blocks.">
+			<Overload retVal="string" descr="WP: Escaping for HTML blocks.">
 				<Param name="string $text"/>
 			</Overload>
 		</KeyWord>
 		<KeyWord name="esc_js" func="yes">
-			<Overload retVal="string" descr="Escape single quotes, htmlspecialchar ' &lt; &gt; &, and fix line endings.">
+			<Overload retVal="string" descr="WP: Escape single quotes, htmlspecialchar ' &lt; &gt; &, and fix line endings.">
 				<Param name="string $text"/>
 			</Overload>
 		</KeyWord>
 		<KeyWord name="esc_sql" func="yes">
-			<Overload retVal="string" descr="Escapes data for use in a MySQL query">
+			<Overload retVal="string" descr="WP: Escapes data for use in a MySQL query">
 				<Param name="string $sql"/>
 			</Overload>
 		</KeyWord>
 		<KeyWord name="esc_textarea" func="yes">
-			<Overload retVal="string" descr="Escaping for textarea values.">
+			<Overload retVal="string" descr="WP: Escaping for textarea values.">
 				<Param name="string $text"/>
 			</Overload>
 		</KeyWord>
 		<KeyWord name="esc_url" func="yes">
-			<Overload retVal="string" descr="Checks and cleans a URL.">
+			<Overload retVal="string" descr="WP: Checks and cleans a URL.">
 				<Param name="string $url"/>
 				<Param name="[array $protocols=null"/>
 				<Param name="[string $_context=display]]"/>
@@ -3620,18 +3742,18 @@ It's mixed with and based on PHP AutoComplete by Geoffray Warnants - http://www.
 			</Overload>
 		</KeyWord>
 		<KeyWord name="get_adjacent_post" func="yes">
-			<Overload retVal="mixed" descr="Retrieve adjacent post.">
+			<Overload retVal="mixed" descr="WP: Retrieve adjacent post.">
 				<Param name="[bool $in_same_cat"/>
 				<Param name="[string $excluded_categories"/>
 				<Param name="[bool $previous]]]"/>
 			</Overload>
 		</KeyWord>
 		<KeyWord name="get_all_category_ids" func="yes">
-			<Overload retVal="array" descr="Retrieves all category IDs.">
+			<Overload retVal="array" descr="WP: Retrieves all category IDs.">
 			</Overload>
 		</KeyWord>
 		<KeyWord name="get_archives_link" func="yes">
-			<Overload retVal="string" descr="Retrieve archive link content based on predefined or custom code.">
+			<Overload retVal="string" descr="WP: Retrieve archive link content based on predefined or custom code.">
 				<Param name="string $url"/>
 				<Param name="string $text"/>
 				<Param name="[string $format=html"/>
@@ -3640,36 +3762,36 @@ It's mixed with and based on PHP AutoComplete by Geoffray Warnants - http://www.
 			</Overload>
 		</KeyWord>
 		<KeyWord name="get_author_posts_url" func="yes">
-			<Overload retVal="string" descr="Retrieve the URL to the author page for the user with the ID provided.">
+			<Overload retVal="string" descr="WP: Retrieve the URL to the author page for the user with the ID provided.">
 				<Param name="int $author_id"/>
 				<Param name="[string $author_nicename]"/>
 			</Overload>
 		</KeyWord>
 		<KeyWord name="get_bloginfo" func="yes">
-			<Overload retVal="string" descr="Retrieve information about the blog.">
+			<Overload retVal="string" descr="WP: Retrieve information about the blog.">
 				<Param name="[string $show"/>
 				<Param name="[string $filter=raw]]"/>
 			</Overload>
 		</KeyWord>
 		<KeyWord name="get_blog_count" func="yes">
-			<Overload retVal="int" descr="Get the number of active sites on your installation.">
+			<Overload retVal="int" descr="WP: Get the number of active sites on your installation.">
 				<Param name="[int $site_id]"/>
 			</Overload>
 		</KeyWord>
 		<KeyWord name="get_blog_details" func="yes">
-			<Overload retVal="object" descr="Retrieve the details for a blog from the blogs table and blog options.">
+			<Overload retVal="object" descr="WP: Retrieve the details for a blog from the blogs table and blog options.">
 				<Param name="mixed $fields"/>
 				<Param name="[bool $get_all=true]"/>
 			</Overload>
 		</KeyWord>
 		<KeyWord name="get_blogs_of_user" func="yes">
-			<Overload retVal="array" descr="Get the blogs a user belongs to.">
+			<Overload retVal="array" descr="WP: Get the blogs a user belongs to.">
 				<Param name="int $user_id"/>
 				<Param name="[bool $all=false]"/>
 			</Overload>
 		</KeyWord>
 		<KeyWord name="get_body_class" func="yes">
-			<Overload retVal="array" descr="Retrieve the classes for the body element as an array.">
+			<Overload retVal="array" descr="WP: Retrieve the classes for the body element as an array.">
 				<Param name="[mixed $class]"/>
 			</Overload>
 		</KeyWord>
@@ -3680,7 +3802,7 @@ It's mixed with and based on PHP AutoComplete by Geoffray Warnants - http://www.
 			</Overload>
 		</KeyWord>
 		<KeyWord name="get_calendar" func="yes">
-			<Overload retVal="void" descr="Display calendar with days that have posts as links.">
+			<Overload retVal="void" descr="WP: Display calendar with days that have posts as links.">
 				<Param name="[bool $initial=true"/>
 				<Param name="[bool $echo=true]]"/>
 			</Overload>
@@ -3691,7 +3813,7 @@ It's mixed with and based on PHP AutoComplete by Geoffray Warnants - http://www.
 			</Overload>
 		</KeyWord>
 		<KeyWord name="get_categories" func="yes">
-			<Overload retVal="array" descr="Retrieve list of category objects.">
+			<Overload retVal="array" descr="WP: Retrieve list of category objects.">
 				<Param name="[string|array args=array(
 	'type'        => 'post',
 	'child_of'    => 0,
@@ -3709,31 +3831,31 @@ It's mixed with and based on PHP AutoComplete by Geoffray Warnants - http://www.
 			</Overload>
 		</KeyWord>
 		<KeyWord name="get_category" func="yes">
-			<Overload retVal="mixed" descr="Retrieves category data given a category ID or category object.">
+			<Overload retVal="mixed" descr="WP: Retrieves category data given a category ID or category object.">
 				<Param name="int|object $category"/>
 				<Param name="[string $output=OBJECT|ARRAY_A|ARRAY_N"/>
 				<Param name="[string $filter=raw]]"/>
 			</Overload>
 		</KeyWord>
 		<KeyWord name="get_category_by_path" func="yes">
-			<Overload retVal="null|object|array" descr="Retrieve category based on URL containing the category slug.">
+			<Overload retVal="null|object|array" descr="WP: Retrieve category based on URL containing the category slug.">
 				<Param name="string $category_path"/>
 				<Param name="[bool $full_match=true"/>
 				<Param name="[string $output=OBJECT|ARRAY_A|ARRAY_N]]"/>
 			</Overload>
 		</KeyWord>
 		<KeyWord name="get_category_by_slug" func="yes">
-			<Overload retVal="object" descr="Retrieve category object by category slug.">
+			<Overload retVal="object" descr="WP: Retrieve category object by category slug.">
 				<Param name="string $slug"/>
 			</Overload>
 		</KeyWord>
 		<KeyWord name="get_category_link" func="yes">
-			<Overload retVal="string" descr="Retrieve category link URL.">
+			<Overload retVal="string" descr="WP: Retrieve category link URL.">
 				<Param name="int|object $category"/>
 			</Overload>
 		</KeyWord>
 		<KeyWord name="get_category_parents" func="yes">
-			<Overload retVal="string" descr="Retrieve category parents with separator.">
+			<Overload retVal="string" descr="WP: Retrieve category parents with separator.">
 				<Param name="int $category_id"/>
 				<Param name="[bool $link=false"/>
 				<Param name="[string $separator=/"/>
@@ -3742,12 +3864,12 @@ It's mixed with and based on PHP AutoComplete by Geoffray Warnants - http://www.
 			</Overload>
 		</KeyWord>
 		<KeyWord name="get_cat_ID" func="yes">
-			<Overload retVal="int" descr="Retrieve the ID of a category from its name.">
+			<Overload retVal="int" descr="WP: Retrieve the ID of a category from its name.">
 				<Param name="[string $cat_name=General]"/>
 			</Overload>
 		</KeyWord>
 		<KeyWord name="get_cat_name" func="yes">
-			<Overload retVal="string" descr="Retrieve the name of a category from its ID.">
+			<Overload retVal="string" descr="WP: Retrieve the name of a category from its ID.">
 				<Param name="int $category_id"/>
 			</Overload>
 		</KeyWord>
@@ -3772,7 +3894,7 @@ It's mixed with and based on PHP AutoComplete by Geoffray Warnants - http://www.
 			</Overload>
 		</KeyWord>
 		<KeyWord name="get_current_blog_id" func="yes">
-			<Overload retVal="int" descr="Retrieve the current blog id"></Overload>
+			<Overload retVal="int" descr="WP: Retrieve the current blog id"></Overload>
 		</KeyWord>
 		<KeyWord name="get_current_user" func="yes">
 			<Overload retVal="string">
@@ -3780,7 +3902,7 @@ It's mixed with and based on PHP AutoComplete by Geoffray Warnants - http://www.
 			</Overload>
 		</KeyWord>
 		<KeyWord name="get_current_user_id" func="yes">
-			<Overload retVal="int" descr="Get the current user's ID">
+			<Overload retVal="int" descr="WP: Get the current user's ID">
 			</Overload>
 		</KeyWord>
 		<KeyWord name="get_declared_classes" func="yes">
@@ -3813,13 +3935,27 @@ It's mixed with and based on PHP AutoComplete by Geoffray Warnants - http://www.
 				<Param name="string $extension_name"/>
 			</Overload>
 		</KeyWord>
+		<KeyWord name="get_field_id" func="yes">
+			<Overload retVal="int" descr="WP: 
+Constructs id attributes for use in widget fields.
+This function should be used in form() methods to create id attributes for fields to be saved by WP_Widget::update().">
+				<Param name="string $field_name"/>
+			</Overload>
+		</KeyWord>
+		<KeyWord name="get_field_name" func="yes">
+			<Overload retVal="string" descr="WP: 
+Constructs name attributes for use in form() fields
+This function should be used in form() methods to create name attributes for fields to be saved by update()">
+				<Param name="string $field_name"/>
+			</Overload>
+		</KeyWord>
 		<KeyWord name="get_footer" func="yes">
-			<Overload retVal="void" descr="Load footer template.">
+			<Overload retVal="void" descr="WP: Load footer template.">
 				<Param name="[string $name=null]"/>
 			</Overload>
 		</KeyWord>
 		<KeyWord name="get_header" func="yes">
-			<Overload retVal="void" descr="Load header template.">
+			<Overload retVal="void" descr="WP: Load header template.">
 				<Param name="[string $name=null]"/>
 			</Overload>
 		</KeyWord>
@@ -3871,44 +4007,96 @@ It's mixed with and based on PHP AutoComplete by Geoffray Warnants - http://www.
 				<Param name="object $object"/>
 			</Overload>
 		</KeyWord>
+		<KeyWord name="get_option" func="yes">
+			<Overload retVal="mixed" descr="WP: Version of get_option that is private to install/upgrade.">
+				<Param name="string $setting"/>
+			</Overload>
+		</KeyWord>
+		<KeyWord name="get_options" func="yes">
+			<Overload retVal="array" descr="WP: Get the options registered for the screen."></Overload>
+		</KeyWord>
+		<KeyWord name="get_pages" func="yes">
+			<Overload retVal="array|bool">
+				<Param name="array $args=array(
+	'sort_order' => 'asc',
+	'sort_column' => 'post_title',
+	'hierarchical' => 1,
+	'exclude' => '',
+	'include' => '',
+	'meta_key' => '',
+	'meta_value' => '',
+	'authors' => '',
+	'child_of' => 0,
+	'parent' => -1,
+	'exclude_tree' => '',
+	'number' => '',
+	'offset' => 0,
+	'post_type' => 'page',
+	'post_status' => 'publish'
+)"/>
+			</Overload>
+		</KeyWord>
 		<KeyWord name="get_parent_class" func="yes">
 			<Overload retVal="string|false">
 				<Param name="[mixed $object]"/>
 			</Overload>
 		</KeyWord>
 		<KeyWord name="get_permalink" func="yes">
-			<Overload retVal="string" descr="Retrieve full permalink for current post or post ID.">
+			<Overload retVal="string" descr="WP: Retrieve full permalink for current post or post ID.">
 				<Param name="[int $post_id"/>
 				<Param name="[bool $leavename=false]]"/>
 			</Overload>
 		</KeyWord>
 		<KeyWord name="get_post" func="yes">
-			<Overload retVal="mixed" descr="Retrieves post data given a post ID or post object.">
+			<Overload retVal="mixed" descr="WP: Retrieves post data given a post ID or post object.">
 				<Param name="[int $id"/>
 				<Param name="[string $output=OBJECT|ARRAY_A|ARRAY_N"/>
 				<Param name="[string $filter=raw]]]"/>
 			</Overload>
 		</KeyWord>
+		<KeyWord name="get_posts" func="yes">
+			<Overload retVal="array" descr="WP: Create an array of posts based on a set of parameters.">
+				<Param name="array $args=array(
+	'posts_per_page'   => 5,
+	'offset'           => 0,
+	'category'         => '',
+	'category_name'    => '',
+	'orderby'          => 'date',
+	'order'            => 'DESC',
+	'include'          => '',
+	'exclude'          => '',
+	'meta_key'         => '',
+	'meta_value'       => '',
+	'post_type'        => 'post',
+	'post_mime_type'   => '',
+	'post_parent'      => '',
+	'author'	   => '',
+	'post_status'      => 'publish',
+	'suppress_filters' => true 
+)
+    'orderby' string (optional)"/>
+			</Overload>
+		</KeyWord>
 		<KeyWord name="get_posts_nav_link" func="yes">
-			<Overload retVal="string" descr="Return post pages link navigation for previous and next pages.">
+			<Overload retVal="string" descr="WP: Return post pages link navigation for previous and next pages.">
 				<Param name="[mixed $args]"/>
 			</Overload>
 		</KeyWord>
 		<KeyWord name="get_post_class" func="yes">
-			<Overload retVal="array" descr="Retrieve the classes for the post div as an array.">
+			<Overload retVal="array" descr="WP: Retrieve the classes for the post div as an array.">
 				<Param name="[mixed $class"/>
 				<Param name="[int $post_id]]"/>
 			</Overload>
 		</KeyWord>
 		<KeyWord name="get_post_meta" func="yes">
-			<Overload retVal="mixed" descr="Retrieve post meta field for a post.">
+			<Overload retVal="mixed" descr="WP: Retrieve post meta field for a post.">
 				<Param name="int $post_id"/>
 				<Param name="[string $key"/>
 				<Param name="[bool $single]]"/>
 			</Overload>
 		</KeyWord>
 		<KeyWord name="get_post_modified_time" func="yes">
-			<Overload retVal="string" descr="Retrieve the time at which the post was last modified.">
+			<Overload retVal="string" descr="WP: Retrieve the time at which the post was last modified.">
 				<Param name="[string $d=U"/>
 				<Param name="[bool $gmt=false"/>
 				<Param name="[int|object post=null"/>
@@ -3916,14 +4104,14 @@ It's mixed with and based on PHP AutoComplete by Geoffray Warnants - http://www.
 			</Overload>
 		</KeyWord>
 		<KeyWord name="get_post_permalink" func="yes">
-			<Overload retVal="string" descr="Retrieve the permalink for a post with a custom post type.">
+			<Overload retVal="string" descr="WP: Retrieve the permalink for a post with a custom post type.">
 				<Param name="[int $post_id"/>
 				<Param name="[bool $leavename=false"/>
 				<Param name="[bool $sample=false]]]"/>
 			</Overload>
 		</KeyWord>
 		<KeyWord name="get_post_time" func="yes">
-			<Overload retVal="string" descr="Retrieve the time at which the post was written.">
+			<Overload retVal="string" descr="WP: Retrieve the time at which the post was written.">
 				<Param name="[string $d=U"/>
 				<Param name="[bool $gmt=false"/>
 				<Param name="[int|object post=null"/>
@@ -3937,49 +4125,49 @@ It's mixed with and based on PHP AutoComplete by Geoffray Warnants - http://www.
 			</Overload>
 		</KeyWord>
 		<KeyWord name="get_role" func="yes">
-			<Overload retVal="object" descr="Retrieve role object.">
+			<Overload retVal="object" descr="WP: Retrieve role object.">
 				<Param name="string $role"/>
 			</Overload>
 		</KeyWord>
 		<KeyWord name="get_search_form" func="yes">
-			<Overload retVal="void" descr="Display search form.">
+			<Overload retVal="void" descr="WP: Display search form.">
 				<Param name="[bool $echo=true]"/>
 			</Overload>
 		</KeyWord>
 		<KeyWord name="get_search_query" func="yes">
-			<Overload retVal="string" descr="Retrieve the contents of the search WordPress query variable.">
+			<Overload retVal="string" descr="WP: Retrieve the contents of the search WordPress query variable.">
 				<Param name="[bool $escaped=true]"/>
 			</Overload>
 		</KeyWord>
 		<KeyWord name="get_sidebar" func="yes">
-			<Overload retVal="void" descr="Load sidebar template.">
+			<Overload retVal="void" descr="WP: Load sidebar template.">
 				<Param name="[string $name=null]"/>
 			</Overload>
 		</KeyWord>
 		<KeyWord name="get_site_url" func="yes">
-			<Overload retVal="string" descr="Retrieve the site url for a given site.">
+			<Overload retVal="string" descr="WP: Retrieve the site url for a given site.">
 				<Param name="[int $blog_id=null"/>
 				<Param name="[string $path"/>
 				<Param name="[string $scheme=null]]]"/>
 			</Overload>
 		</KeyWord>
 		<KeyWord name="get_super_admins" func="yes">
-			<Overload retVal="array" descr="Retrieve a list of super admins.">
+			<Overload retVal="array" descr="WP: Retrieve a list of super admins.">
 			</Overload>
 		</KeyWord>
 		<KeyWord name="get_stylesheet_directory_uri" func="yes">
-			<Overload retVal="string" descr="Gets Stylesheet Directory.">
+			<Overload retVal="string" descr="WP: Gets Stylesheet Directory.">
 			</Overload>
 		</KeyWord>
 		<KeyWord name="get_tag" func="yes">
-			<Overload retVal="object|array" descr="Retrieve post tag by tag ID or tag object.">
+			<Overload retVal="object|array" descr="WP: Retrieve post tag by tag ID or tag object.">
 				<Param name="int|object $tag"/>
 				<Param name="[string $output=OBJECT|ARRAY_A|ARRAY_N"/>
 				<Param name="[string $filter=raw]]"/>
 			</Overload>
 		</KeyWord>
 		<KeyWord name="get_tags" func="yes">
-			<Overload retVal="array" descr="Retrieves all post tags.">
+			<Overload retVal="array" descr="WP: Retrieves all post tags.">
 				<Param name="string|array args=array(
     'orderby'       => 'name',
     'order'         => 'ASC',
@@ -4003,116 +4191,116 @@ It's mixed with and based on PHP AutoComplete by Geoffray Warnants - http://www.
 			</Overload>
 		</KeyWord>
 		<KeyWord name="get_tag_link" func="yes">
-			<Overload retVal="string" descr="Retrieve the link to the tag.">
+			<Overload retVal="string" descr="WP: Retrieve the link to the tag.">
 				<Param name="int|object $tag"/>
 			</Overload>
 		</KeyWord>
 		<KeyWord name="get_template_directory" func="yes">
-			<Overload retVal="string" descr="Retrieve current theme directory."></Overload>
+			<Overload retVal="string" descr="WP: Retrieve current theme directory."></Overload>
 		</KeyWord>
 		<KeyWord name="get_template_directory_uri" func="yes">
-			<Overload retVal="string" descr="Retrieve theme directory URI."></Overload>
+			<Overload retVal="string" descr="WP: Retrieve theme directory URI."></Overload>
 		</KeyWord>
 		<KeyWord name="get_template_part" func="yes">
-			<Overload retVal="void" descr="Load a template part into a template">
+			<Overload retVal="void" descr="WP: Load a template part into a template">
 				<Param name="string $slug"/>
 				<Param name="[string $name=null]"/>
 			</Overload>
 		</KeyWord>
 		<KeyWord name="get_the_author" func="yes">
-			<Overload retVal="string" descr="Retrieve the author of the current post.">
+			<Overload retVal="string" descr="WP: Retrieve the author of the current post.">
 				<Param name="[string $deprecated]"/>
 			</Overload>
 		</KeyWord>
 		<KeyWord name="get_the_author_link" func="yes">
-			<Overload retVal="void" descr="Retrieve either author's link or author's name."></Overload>
+			<Overload retVal="void" descr="WP: Retrieve either author's link or author's name."></Overload>
 		</KeyWord>
 		<KeyWord name="get_the_author_meta" func="yes">
-			<Overload retVal="string" descr="Retrieve the requested data of the author of the current post.">
+			<Overload retVal="string" descr="WP: Retrieve the requested data of the author of the current post.">
 				<Param name="[string $field"/>
 				<Param name="[int $user_id=false]]"/>
 			</Overload>
 		</KeyWord>
 		<KeyWord name="get_the_author_posts" func="yes">
-			<Overload retVal="int" descr="Retrieve the number of posts by the author of the current post."></Overload>
+			<Overload retVal="int" descr="WP: Retrieve the number of posts by the author of the current post."></Overload>
 		</KeyWord>
 		<KeyWord name="get_the_category" func="yes">
-			<Overload retVal="array" descr="Retrieve post categories.">
+			<Overload retVal="array" descr="WP: Retrieve post categories.">
 				<Param name="[int $post_id]"/>
 			</Overload>
 		</KeyWord>
 		<KeyWord name="get_the_category_by_ID" func="yes">
-			<Overload retVal="string" descr="Retrieve category name based on category ID.">
+			<Overload retVal="string" descr="WP: Retrieve category name based on category ID.">
 				<Param name="int $cat_ID"/>
 			</Overload>
 		</KeyWord>
 		<KeyWord name="get_the_category_list" func="yes">
-			<Overload retVal="string" descr="Retrieve category list in either HTML list or custom format.">
+			<Overload retVal="string" descr="WP: Retrieve category list in either HTML list or custom format.">
 				<Param name="[string $separator"/>
 				<Param name="[string $parents"/>
 				<Param name="[int $post_id]]]"/>
 			</Overload>
 		</KeyWord>
 		<KeyWord name="get_the_content" func="yes">
-			<Overload retVal="string" descr="Retrieve the post content.">
+			<Overload retVal="string" descr="WP: Retrieve the post content.">
 				<Param name="[string $more_link_text"/>
 				<Param name="[bool $stripteaser=false]]"/>
 			</Overload>
 		</KeyWord>
 		<KeyWord name="get_the_date" func="yes">
-			<Overload retVal="string|null" descr="Retrieve the date the current post was written.">
+			<Overload retVal="string|null" descr="WP: Retrieve the date the current post was written.">
 				<Param name="[string $date_format]"/>
 			</Overload>
 		</KeyWord>
 		<KeyWord name="get_the_excerpt" func="yes">
-			<Overload retVal="string" descr="Retrieve the post excerpt.">
+			<Overload retVal="string" descr="WP: Retrieve the post excerpt.">
 				<Param name="deprecated"/>
 			</Overload>
 		</KeyWord>
 		<KeyWord name="get_the_guid" func="yes">
-			<Overload retVal="string" descr="Retrieve the Post Global Unique Identifier (guid).">
+			<Overload retVal="string" descr="WP: Retrieve the Post Global Unique Identifier (guid).">
 				<Param name="[int $post_id]"/>
 			</Overload>
 		</KeyWord>
 		<KeyWord name="get_the_ID" func="yes">
-			<Overload retVal="int" descr="Retrieve the ID of the current item in the WordPress Loop."></Overload>
+			<Overload retVal="int" descr="WP: Retrieve the ID of the current item in the WordPress Loop."></Overload>
 		</KeyWord>
 		<KeyWord name="get_the_modified_author" func="yes">
-			<Overload retVal="string" descr="Retrieve the author who last edited the current post."></Overload>
+			<Overload retVal="string" descr="WP: Retrieve the author who last edited the current post."></Overload>
 		</KeyWord>
 		<KeyWord name="get_the_modified_date" func="yes">
-			<Overload retVal="string" descr="Retrieve the date on which the post was last modified.">
+			<Overload retVal="string" descr="WP: Retrieve the date on which the post was last modified.">
 				<Param name="[string $date_format]"/>
 			</Overload>
 		</KeyWord>
 		<KeyWord name="get_the_modified_time" func="yes">
-			<Overload retVal="string" descr="Retrieve the time at which the post was last modified.">
+			<Overload retVal="string" descr="WP: Retrieve the time at which the post was last modified.">
 				<Param name="[string $date_format]"/>
 			</Overload>
 		</KeyWord>
 		<KeyWord name="get_the_password_form" func="yes">
-			<Overload retVal="string" descr="Retrieve protected post password form content."></Overload>
+			<Overload retVal="string" descr="WP: Retrieve protected post password form content."></Overload>
 		</KeyWord>
 		<KeyWord name="get_the_tags" func="yes">
-			<Overload retVal="array" descr="Retrieve the tags for a post.">
+			<Overload retVal="array" descr="WP: Retrieve the tags for a post.">
 				<Param name="[int $post_id]"/>
 			</Overload>
 		</KeyWord>
 		<KeyWord name="get_the_tag_list" func="yes">
-			<Overload retVal="string" descr="Retrieve the tags for a post formatted as a string.">
+			<Overload retVal="string" descr="WP: Retrieve the tags for a post formatted as a string.">
 				<Param name="[string $before"/>
 				<Param name="[string $separator"/>
 				<Param name="[string $after]]]"/>
 			</Overload>
 		</KeyWord>
 		<KeyWord name="get_the_terms" func="yes">
-			<Overload retVal="mixed" descr="Retrieve the terms of the taxonomy that are attached to the post.">
+			<Overload retVal="mixed" descr="WP: Retrieve the terms of the taxonomy that are attached to the post.">
 				<Param name="int $post_id"/>
 				<Param name="string $taxonomy"/>
 			</Overload>
 		</KeyWord>
 		<KeyWord name="get_the_term_list" func="yes">
-			<Overload retVal="string" descr="Retrieve a post's terms as a list with specified format.">
+			<Overload retVal="string" descr="WP: Retrieve a post's terms as a list with specified format.">
 				<Param name="int $post_id"/>
 				<Param name="string $taxonomy"/>
 				<Param name="[string $before"/>
@@ -4121,18 +4309,18 @@ It's mixed with and based on PHP AutoComplete by Geoffray Warnants - http://www.
 			</Overload>
 		</KeyWord>
 		<KeyWord name="get_the_time" func="yes">
-			<Overload retVal="string" descr="Retrieve the time at which the post was written.">
+			<Overload retVal="string" descr="WP: Retrieve the time at which the post was written.">
 				<Param name="[string $date_format"/>
 				<Param name="[int|object post=null]]"/>
 			</Overload>
 		</KeyWord>
 		<KeyWord name="get_the_title" func="yes">
-			<Overload retVal="string" descr="Retrieve post title.">
+			<Overload retVal="string" descr="WP: Retrieve post title.">
 				<Param name="[int $post_id]"/>
 			</Overload>
 		</KeyWord>
 		<KeyWord name="get_users" func="yes">
-			<Overload retVal="array" descr="Retrieve list of users matching criteria.">
+			<Overload retVal="array" descr="WP: Retrieve list of users matching criteria.">
 				<Param name="[array $args=array(
 	'blog_id'      => $GLOBALS['blog_id'],
 	'role'         => '',
@@ -4154,14 +4342,14 @@ It's mixed with and based on PHP AutoComplete by Geoffray Warnants - http://www.
 			</Overload>
 		</KeyWord>
 		<KeyWord name="get_user_meta" func="yes">
-			<Overload retVal="mixed" descr="Retrieve user meta field for a user.">
+			<Overload retVal="mixed" descr="WP: Retrieve user meta field for a user.">
 				<Param name="int $user_id"/>
 				<Param name="[string $meta_key"/>
 				<Param name="[bool $single=false]]"/>
 			</Overload>
 		</KeyWord>
 		<KeyWord name="get_user_option" func="yes">
-			<Overload retVal="mixed" descr="Retrieve user option that can be either per Site or per Network.">
+			<Overload retVal="mixed" descr="WP: Retrieve user option that can be either per Site or per Network.">
 				<Param name="string $option"/>
 				<Param name="[int $user_id"/>
 				<Param name="[bool $deprecated]]"/>
@@ -4608,35 +4796,38 @@ It's mixed with and based on PHP AutoComplete by Geoffray Warnants - http://www.
 			</Overload>
 		</KeyWord>
 		<KeyWord name="has_action" func="yes">
-			<Overload retVal="int|bool" descr="Check if any action has been registered for a hook.">
+			<Overload retVal="int|bool" descr="WP: Check if any action has been registered for a hook.">
 				<Param name="string $tag"/>
 				<Param name="[callback $function_to_check=false]"/>
 			</Overload>
 		</KeyWord>
 		<KeyWord name="has_category" func="yes">
-			<Overload retVal="bool" descr="Check if the current post has any of given category.">
+			<Overload retVal="bool" descr="WP: Check if the current post has any of given category.">
 				<Param name="[string|int|array category"/>
 				<Param name="[int|object post=null]]"/>
 			</Overload>
 		</KeyWord>
 		<KeyWord name="has_filter" func="yes">
-			<Overload retVal="int|bool" descr="Check if any filter has been registered for a hook.">
+			<Overload retVal="int|bool" descr="WP: Check if any filter has been registered for a hook.">
 				<Param name="string $tag"/>
 				<Param name="[callback $function_to_check=false]"/>
 			</Overload>
 		</KeyWord>
 		<KeyWord name="has_tag" func="yes">
-			<Overload retVal="bool" descr="Check if the current post has any of given tags.">
+			<Overload retVal="bool" descr="WP: Check if the current post has any of given tags.">
 				<Param name="[string|int|array tag"/>
 				<Param name="[int|object post=null]]"/>
 			</Overload>
 		</KeyWord>
 		<KeyWord name="has_term" func="yes">
-			<Overload retVal="bool" descr="Check if the current post has any of given terms.">
+			<Overload retVal="bool" descr="WP: Check if the current post has any of given terms.">
 				<Param name="[string|int|array term"/>
 				<Param name="[string $taxonomy"/>
 				<Param name="[int|object post=null]]]"/>
 			</Overload>
+		</KeyWord>
+		<KeyWord name="have_posts" func="yes">
+			<Overload retVal="bool" descr="WP: Checks to see if the current WordPress query has any results to loop over."></Overload>
 		</KeyWord>
 		<KeyWord name="header" func="yes">
 			<Overload retVal="void">
@@ -6422,8 +6613,8 @@ It's mixed with and based on PHP AutoComplete by Geoffray Warnants - http://www.
 			</Overload>
 		</KeyWord>
 		<KeyWord name="in_category" func="yes">
-			<Overload retVal="bool" descr="Check if the current post in within any of the given categories.">
-				<Param name="int|string|array category"/>
+			<Overload retVal="bool" descr="WP: Check if the current post in within any of the given categories.">
+				<Param name="int|string|array $category"/>
 				<Param name="int|object $post"/>
 			</Overload>
 		</KeyWord>
@@ -6451,6 +6642,9 @@ It's mixed with and based on PHP AutoComplete by Geoffray Warnants - http://www.
 				<Param name="[mixed $...]]"/>
 			</Overload>
 		</KeyWord>
+		<KeyWord name="is_404" func="yes">
+			<Overload retVal="bool" descr="WP: Checks if 404 error is being displayed (after an 'HTTP 404: Not Found' error occurs."></Overload>
+		</KeyWord>
 		<KeyWord name="is_a" func="yes">
 			<Overload retVal="bool">
 				<Param name="object $object"/>
@@ -6470,15 +6664,38 @@ It's mixed with and based on PHP AutoComplete by Geoffray Warnants - http://www.
 				<Param name="[bool $skip_inactive=true]]]]"/>
 			</Overload>
 		</KeyWord>
+		<KeyWord name="is_admin" func="yes">
+			<Overload retVal="bool" descr="WP: Checks if the Dashboard or the administration panel is attempting to be displayed."></Overload>
+		</KeyWord>
+		<KeyWord name="is_admin_bar_showing" func="yes">
+			<Overload retVal="bool" descr="WP: Checks if the WordPress Toolbar is being displayed."></Overload>
+		</KeyWord>
 		<KeyWord name="is_array" func="yes">
 			<Overload retVal="bool">
 				<Param name="mixed $var"/>
+			</Overload>
+		</KeyWord>
+		<KeyWord name="is_archive" func="yes">
+			<Overload retVal="bool" descr="WP: Checks if any type of Archive page is being displayed."></Overload>
+		</KeyWord>
+		<KeyWord name="is_archived" func="yes">
+			<Overload retVal="string" descr="WP: Check if a particular blog is archived.">
+			    <Param name="int $blog_id"/>
+			</Overload>
+		</KeyWord>
+		<KeyWord name="is_attachment" func="yes">
+			<Overload retVal="bool" descr="WP: 
+Checks if an attachment is being displayed.
+An attachment is an image or other file uploaded through the post editor's upload utility.">
 			</Overload>
 		</KeyWord>
 		<KeyWord name="is_binary" func="yes">
 			<Overload retVal="bool">
 				<Param name="mixed $var"/>
 			</Overload>
+		</KeyWord>
+		<KeyWord name="is_blog_admin" func="yes">
+			<Overload retVal="bool" descr="WP: Whether the current request is for a blog admin screen /wp-admin/."></Overload>
 		</KeyWord>
 		<KeyWord name="is_bool" func="yes">
 			<Overload retVal="bool">
@@ -6498,7 +6715,18 @@ It's mixed with and based on PHP AutoComplete by Geoffray Warnants - http://www.
 	   		</Overload>
 		</KeyWord>
 		<KeyWord name="is_category" func="yes">
-	   		<Overload retVal="bool" descr="If a category is displayed."></Overload>
+	   		<Overload retVal="bool" descr="WP: If a category is displayed.">
+	   		    <Param name="[mixed $cat_ID|$cat_title|$cat_slug|$array_ids]"/>
+	   		</Overload>
+		</KeyWord>
+		<KeyWord name="is_child_theme" func="yes">
+	   		<Overload retVal="bool" descr="WP: Whether a child theme is in use."></Overload>
+		</KeyWord>
+		<KeyWord name="is_date" func="yes">
+	   		<Overload retVal="bool" descr="WP: Test to see if the page is a date based archive page. Similar to is_category()"></Overload>
+		</KeyWord>
+		<KeyWord name="is_day" func="yes">
+	   		<Overload retVal="bool" descr="WP: Test to see if the page is a date based archive page."></Overload>
 		</KeyWord>
 		<KeyWord name="is_dir" func="yes">
 			<Overload retVal="bool">
@@ -6510,13 +6738,23 @@ It's mixed with and based on PHP AutoComplete by Geoffray Warnants - http://www.
 				<Param name="mixed $var"/>
 			</Overload>
 		</KeyWord>
-		<KeyWord name="id_dynamic_sidebar" func="yes">
-			<Overload retVal="bool"></Overload>
+		<KeyWord name="is_dynamic_sidebar" func="yes">
+	   		<Overload retVal="bool" descr="WP: If any registered sidebar contains a widget."></Overload>
+		</KeyWord>
+		<KeyWord name="is_email" func="yes">
+	   		<Overload retVal="string|bool" descr="WP: Verifies that an email is valid and returns it.">
+	   		    <Param name="string $email"/>
+	   		</Overload>
 		</KeyWord>
 		<KeyWord name="is_executable" func="yes">
 	   		<Overload retVal="bool">
 	   			<Param name="string $filename"/>
 	   		</Overload>
+		</KeyWord>
+		<KeyWord name="is_feed" func="yes">
+			<Overload retVal="bool" descr="WP: Can be used to determine if the current query is for a feed (e.g. RSS).">
+				<Param name="[array|string $feed]"/>
+			</Overload>
 		</KeyWord>
 		<KeyWord name="is_file" func="yes">
 			<Overload retVal="bool">
@@ -6534,10 +6772,10 @@ It's mixed with and based on PHP AutoComplete by Geoffray Warnants - http://www.
 			</Overload>
 		</KeyWord>
 		<KeyWord name="is_front_page" func="yes">
-			<Overload retVal="bool" descr="If on the home page (blog or page)"></Overload>
+			<Overload retVal="bool" descr="WP: If on the home page (blog or page)"></Overload>
 		</KeyWord>
 		<KeyWord name="is_home" func="yes">
-			<Overload retVal="bool" descr="If on the home page(blog)"></Overload>
+			<Overload retVal="bool" descr="WP: If on the home page(blog)"></Overload>
 		</KeyWord>
 		<KeyWord name="is_infinite" func="yes">
 			<Overload retVal="bool">
@@ -6557,6 +6795,11 @@ It's mixed with and based on PHP AutoComplete by Geoffray Warnants - http://www.
 		<KeyWord name="is_link" func="yes">
 			<Overload retVal="bool">
 				<Param name="string $filename"/>
+			</Overload>
+		</KeyWord>
+		<KeyWord name="is_local_attachment" func="yes">
+			<Overload retVal="bool" descr="WP: Check if the attachment URI is local one and is really an attachment.">
+				<Param name="string $url"/>
 			</Overload>
 		</KeyWord>
 		<KeyWord name="is_long" func="yes">
@@ -6579,25 +6822,143 @@ It's mixed with and based on PHP AutoComplete by Geoffray Warnants - http://www.
 				<Param name="mixed $var"/>
 			</Overload>
 		</KeyWord>
+		<KeyWord name="is_main_network" func="yes">
+			<Overload retVal="bool" descr="WP: Determine whether a network is the main network of the Multisite install.">
+			    <Param name="mixed $network_id=null"/>
+			</Overload>
+		</KeyWord>
+		<KeyWord name="is_main_query" func="yes">
+			<Overload retVal="bool" descr="WP: Used to evaluate whether the current query (such as within the loop) is the 'main' query (as opposed to a secondary query)."></Overload>
+		</KeyWord>
 		<KeyWord name="is_multi_author" func="yes">
-			<Overload retVal="bool" descr="Does this site have more than one author."></Overload>
+			<Overload retVal="bool" descr="WP: Does this site have more than one author."></Overload>
+		</KeyWord>
+		<KeyWord name="is_main_site" func="yes">
+			<Overload retVal="bool" descr="WP: Test if site is main site, given site id. True if not multisite or site is main site.">
+			    <Param name="[int $blog_id]"/>
+			</Overload>
+		</KeyWord>
+		<KeyWord name="is_month" func="yes">
+			<Overload retVal="bool" descr="WP: Test to see if the page is a month based archive page."></Overload>
+		</KeyWord>
+		<KeyWord name="is_multi_author" func="yes">
+			<Overload retVal="bool" descr="WP: 
+Checks if more than one author has published posts for this site, meaning it returns either 
+TRUE if there is more than one author or FALSE if there is one, or no, authors."></Overload>
+		</KeyWord>
+		<KeyWord name="is_multisite" func="yes">
+			<Overload retVal="bool" descr="WP: Determine whether Multisite support is enabled."></Overload>
+		</KeyWord>
+		<KeyWord name="is_nav_menu" func="yes">
+			<Overload retVal="bool" descr="WP: Checks if the given id, slug, or name is a navigation menu."></Overload>
+		</KeyWord>
+		<KeyWord name="is_nav_menu_item" func="yes">
+			<Overload retVal="bool" descr="WP: Determine whether the given ID is a nav menu item.">
+			    <Param name="int $menu_item_id"/>
+			</Overload>
+		</KeyWord>
+		<KeyWord name="is_network_admin" func="yes">
+			<Overload retVal="bool" descr="WP: Checks whether the current request is for a network admin screen (wp-admin/network)."></Overload>
+		</KeyWord>
+		<KeyWord name="is_new_day" func="yes">
+			<Overload retVal="bool" descr="WP: Checks if today is a new day."></Overload>
 		</KeyWord>
 		<KeyWord name="is_object" func="yes">
 			<Overload retVal="bool">
 				<Param name="mixed $var"/>
 			</Overload>
 		</KeyWord>
+		<KeyWord name="is_object_in_term" func="yes">
+			<Overload retVal="bool|mixed" descr="WP: 
+Determines if the given object is associated with any of the given terms.
+True if associated, false if not associated. WP_Error on input error.">
+			    <Param name="int $object_id"/>
+			    <Param name="str $taxonomy"/>
+			    <Param name="[mixed $term_id|$slug|$array_terms]"/>
+			</Overload>
+		</KeyWord>
 		<KeyWord name="is_page" func="yes">
-			<Overload retVal="bool" descr="If a page is displayed."></Overload>
+			<Overload retVal="bool" descr="WP: If a page is displayed.">
+			    <Param name="[mixed $page_id|$page_title|$page_slug]"/>
+			</Overload>
+		</KeyWord>
+		<KeyWord name="is_page_template" func="yes">
+			<Overload retVal="bool" descr="WP: 
+Allows you to determine if you are in any page template. 
+Optionally checks if a specific Page Template is being used in a Page.
+$template name or array of templates to match.">
+			    <Param name="[string|array $template]"/>
+			</Overload>
+		</KeyWord>
+		<KeyWord name="is_plugin_active" func="yes">
+			<Overload retVal="bool" descr="WP: Checks if a plugin is activated.">
+				<Param name="string $plugin_name"/>
+			</Overload>
+		</KeyWord>
+		<KeyWord name="is_plugin_inactive" func="yes">
+			<Overload retVal="bool" descr="WP: Checks if a plugin is not activated.">
+				<Param name="string $plugin_name"/>
+			</Overload>
+		</KeyWord>
+		<KeyWord name="is_post_type_archive" func="yes">
+			<Overload retVal="bool" descr="WP: Checks if the query is for an archive page of a given post type(s).">
+				<Param name="array|string $post_types"/>
+			</Overload>
+		</KeyWord>
+		<KeyWord name="is_preview" func="yes">
+			<Overload retVal="bool" descr="WP: Checks if the currently displayed post, page or post type is a preview."></Overload>
+		</KeyWord>
+		<KeyWord name="is_protected_meta" func="yes">
+			<Overload retVal="bool" descr="WP: Determine whether a meta key is protected.">
+			    <Param name="string $meta_key"/>
+			    <Param name="[string $meta_type=null]"/>
+			</Overload>
 		</KeyWord>
 		<KeyWord name="is_readable" func="yes">
 			<Overload retVal="bool">
 				<Param name="string $filename"/>
 			</Overload>
 		</KeyWord>
+		<KeyWord name="is_redirect" func="yes">
+			<Overload retVal="bool" descr="WP: ">
+				<Param name="int $sc"/>
+			</Overload>
+		</KeyWord>
 		<KeyWord name="is_resource" func="yes">
 			<Overload retVal="bool">
 				<Param name="mixed $var"/>
+			</Overload>
+		</KeyWord>
+		<KeyWord name="is_robots" func="yes">
+			<Overload retVal="bool" descr="WP: Is the query for the robots file?"></Overload>
+		</KeyWord>
+		<KeyWord name="is_role" func="yes">
+			<Overload retVal="bool" descr="WP: Whether role name is currently in the list of available roles.">
+			    <Param name="string $role"/>
+			</Overload>
+		</KeyWord>
+		<KeyWord name="is_rss" func="yes">
+			<Overload retVal="bool" descr="WP: Is RSS"></Overload>
+		</KeyWord>
+		<KeyWord name="is_search" func="yes">
+			<Overload retVal="bool" descr="WP: Checks if search result page archive is being displayed."></Overload>
+		</KeyWord>
+		<KeyWord name="is_serialized" func="yes">
+			<Overload retVal="bool" descr="WP: 
+Check value to find if it was serialized.
+If $data is not a string, then returned value will always be false. 
+Serialized data is always a string.">
+			    <Param name="mixed $data"/>
+			</Overload>
+		</KeyWord>
+		<KeyWord name="is_serialized_string" func="yes">
+			<Overload retVal="bool" descr="WP: Check whether serialized data is of string type.">
+				<Param name="mixed $data"/>
+			</Overload>
+		</KeyWord>
+		<KeyWord name="is_server_error" func="yes">
+			<Overload retVal="bool">
+				<Param name="int $sc"/>
 			</Overload>
 		</KeyWord>
 		<KeyWord name="is_scalar" func="yes">
@@ -6606,10 +6967,37 @@ It's mixed with and based on PHP AutoComplete by Geoffray Warnants - http://www.
 			</Overload>
 		</KeyWord>
 		<KeyWord name="is_single" func="yes">
-			<Overload retVal="bool" descr="If single post is displayed."></Overload>
+			<Overload retVal="bool" descr="WP: If single post is displayed.">
+			    <Param name="[mixed $post_id|$post_title|$post_slug|$array_posts]"/>
+			</Overload>
+		</KeyWord>
+		<KeyWord name="is_singular" func="yes">
+			<Overload retVal="bool" descr="WP: 
+Checks if a singular post is being displayed, which is the case when one of the following returns true: is_single(), is_page() or is_attachment(). 
+If the $post_types parameter is specified, the function will additionally check if the query is for one of the post types specified.">
+			    <Param name="[string|array $post_types]"/>
+			</Overload>
+		</KeyWord>
+		<KeyWord name="is_ssl" func="yes">
+			<Overload retVal="bool" descr="WP: Checks if SSL is being used."></Overload>
 		</KeyWord>
 		<KeyWord name="is_sticky" func="yes">
-			<Overload retVal="bool" descr="If a post is sticky."></Overload>
+			<Overload retVal="bool" descr="WP: If a post is sticky.">
+			    <Param name="[mixed $post_ID]"/>
+			</Overload>
+		</KeyWord>
+		<KeyWord name="is_subdomain_install" func="yes">
+			<Overload retVal="bool" descr="WP: Whether a sub-domain configuration is enabled. This function was added in version 3.0.0."></Overload>
+		</KeyWord>
+		<KeyWord name="is_success" func="yes">
+			<Overload retVal="bool">
+				<Param name="int $sc"/>
+			</Overload>
+		</KeyWord>
+		<KeyWord name="is_super_admin" func="yes">
+			<Overload retVal="bool" descr="WP: Determine if user is a network (super) admin. Will also check if user is admin if network mode is disabled.">
+				<Param name="[int $user_id]"/>
+			</Overload>
 		</KeyWord>
 		<KeyWord name="is_string" func="yes">
 			<Overload retVal="bool">
@@ -6617,7 +7005,7 @@ It's mixed with and based on PHP AutoComplete by Geoffray Warnants - http://www.
 			</Overload>
 		</KeyWord>
 		<KeyWord name="is_super_admin" func="yes">
-			<Overload retVal="bool" descr="Determine if user is a site admin.">
+			<Overload retVal="bool" descr="WP: Determine if user is a site admin.">
 				<Param name="[int $user_id=false]"/>
 			</Overload>
 		</KeyWord>
@@ -6626,6 +7014,45 @@ It's mixed with and based on PHP AutoComplete by Geoffray Warnants - http://www.
 				<Param name="mixed $object"/>
 				<Param name="string $class_name"/>
 			</Overload>
+		</KeyWord>
+		<KeyWord name="is_tag" func="yes">
+			<Overload retVal="bool" descr="WP: Checks if a Tag archive page is being displayed.">
+				<Param name="[mixed $tag_id|$tag_name|$tag_slug|$array_mixed]"/>
+			</Overload>
+		</KeyWord>
+		<KeyWord name="is_tax" func="yes">
+			<Overload retVal="bool" descr="WP: 
+Checks if a custom taxonomy archive page is being displayed.
+If the $taxonomy parameter is specified, this function will additionally check if the query is for that specific taxonomy.">
+				<Param name="[string|array $taxonomy]"/>
+				<Param name="[int|string|array $term]"/>
+			</Overload>
+		</KeyWord>
+		<KeyWord name="is_time" func="yes">
+			<Overload retVal="bool" descr="WP: Test to see if the page is a time based archive page."></Overload>
+		</KeyWord>
+		<KeyWord name="is_trackback" func="yes">
+			<Overload retVal="bool" descr="WP: WP"></Overload>
+		</KeyWord>
+		<KeyWord name="is_user_admin" func="yes">
+			<Overload retVal="bool" descr="WP: Whether the current request is for a user admin screen (e.g. /wp-admin/user/)."></Overload>
+		</KeyWord>
+		<KeyWord name="is_user_logged_in" func="yes">
+			<Overload retVal="bool" descr="WP: Checks if the current visitor is logged in."></Overload>
+		</KeyWord>
+		<KeyWord name="is_user_spammy" func="yes">
+			<Overload retVal="bool" descr="WP: Check to see whether a user is marked as a spammer, based on username.">
+			    <Param name="[string $username]"/>
+			</Overload>
+		</KeyWord>
+		<KeyWord name="is_wp_error" func="yes">
+			<Overload retVal="bool" descr="WP: Checks whether the passed variable is a WordPress Error.
+Looks at the variable and determines if it is both a PHP object and one populated by the WP_Error class.">
+			    <Param name="mixed $any_existing_variable_of_a_known_or_unknown_type"/>
+			</Overload>
+		</KeyWord>
+		<KeyWord name="is_year" func="yes">
+			<Overload retVal="bool" descr="WP: Test to see if the page is a year based archive page."></Overload>
 		</KeyWord>
 		<KeyWord name="is_unicode" func="yes">
 			<Overload retVal="bool">
@@ -6638,7 +7065,7 @@ It's mixed with and based on PHP AutoComplete by Geoffray Warnants - http://www.
 			</Overload>
 		</KeyWord>
 		<KeyWord name="is_user_member_of_blog" func="yes">
-			<Overload retVal="bool" descr="Find out whether a user is a member of a given blog.">
+			<Overload retVal="bool" descr="WP: Find out whether a user is a member of a given blog.">
 				<Param name="[int $user_id"/>
 				<Param name="[int $blog_id]]"/>
 			</Overload>
@@ -6774,7 +7201,7 @@ It's mixed with and based on PHP AutoComplete by Geoffray Warnants - http://www.
 			</Overload>
 		</KeyWord>
 		<KeyWord name="language_attributes" func="yes">
-			<Overload retVal="void" descr="Display the language attributes for the html tag.">
+			<Overload retVal="void" descr="WP: Display the language attributes for the html tag.">
 				<Param name="[string $doctype=html]"/>
 			</Overload>
 		</KeyWord>
@@ -7197,7 +7624,7 @@ It's mixed with and based on PHP AutoComplete by Geoffray Warnants - http://www.
 			</Overload>
 		</KeyWord>
 		<KeyWord name="map_meta_cap" func="yes">
-			<Overload retVal="array" descr="Map meta capabilities to primitive capabilities.">
+			<Overload retVal="array" descr="WP: Map meta capabilities to primitive capabilities.">
 				<Param name="string $cap"/>
 				<Param name="int $user_id"/>
 			</Overload>
@@ -9198,7 +9625,7 @@ It's mixed with and based on PHP AutoComplete by Geoffray Warnants - http://www.
 			</Overload>
 		</KeyWord>
 		<KeyWord name="next_post_link" func="yes">
-			<Overload retVal="mixed" descr="Displays Newer Posts link">
+			<Overload retVal="mixed" descr="WP: Displays Newer Posts link">
 				<Param name="[string $format=%link &raquo;"/>
 				<Param name="[string $link=%title"/>
 				<Param name="[bool $in_same_term=false"/>
@@ -11139,6 +11566,26 @@ It's mixed with and based on PHP AutoComplete by Geoffray Warnants - http://www.
 				<Param name="void"/>
 			</Overload>
 		</KeyWord>
+		<KeyWord name="plugin_basename" func="yes">
+			<Overload retVal="string" descr="WP: Gets the path to a plugin file or directory, relative to the plugins directory, without the leading and trailing slashes.">
+				<Param name="string $file_path|__FILE__"/>
+			</Overload>
+		</KeyWord>
+		<KeyWord name="plugins_url" func="yes">
+			<Overload retVal="string" descr="WP: 
+Retrieves the absolute URL to the plugins or mu-plugins directory (without the trailing slash) or,
+when using the $path argument, to a specific file under that directory. You can either specify
+the $path argument as a hardcoded path relative to the plugins or mu-plugins directory, or conveniently 
+pass __FILE__ as the second argument to make the $path relative to the parent directory of the current PHP script file.">
+				<Param name="[string $plugin_path"/>
+				<Param name="[string $plugin]]"/>
+			</Overload>
+		</KeyWord>
+		<KeyWord name="plugin_dir_path" func="yes">
+			<Overload retVal="string" descr="WP: Gets the filesystem directory path (with trailing slash) for the file passed in.">
+				<Param name="string $file_path|__FILE__"/>
+			</Overload>
+		</KeyWord>
 		<KeyWord name="png2wbmp" func="yes">
 			<Overload retVal="bool">
 				<Param name="string $pngname"/>
@@ -11338,7 +11785,7 @@ It's mixed with and based on PHP AutoComplete by Geoffray Warnants - http://www.
 			</Overload>
 		</KeyWord>
 		<KeyWord name="posts_nav_link" func="yes">
-			<Overload retVal="array" descr="Displays Previous page and Next Page links.">
+			<Overload retVal="array" descr="WP: Displays Previous page and Next Page links.">
 				<Param name="string|array args=array()"/>
 			</Overload>
 		</KeyWord>
@@ -11425,7 +11872,7 @@ It's mixed with and based on PHP AutoComplete by Geoffray Warnants - http://www.
 			</Overload>
 		</KeyWord>
 		<KeyWord name="previous_post_link" func="yes">
-			<Overload retVal="mixed" descr="Displays previous link">
+			<Overload retVal="mixed" descr="WP: Displays previous link">
 				<Param name="string $format='&laquo; %link'"/>
 				<Param name="string $link='%title'"/>
 				<Param name="bool $in_same_term=false"/>
@@ -11620,9 +12067,16 @@ It's mixed with and based on PHP AutoComplete by Geoffray Warnants - http://www.
 			</Overload>
 		</KeyWord>
 		<KeyWord name="qdom_tree"/>
-		<KeyWord name="quoted_printable_decode" func="yes">
+		<KeyWord name="query_posts" func="yes">
 			<Overload retVal="string">
 				<Param name="string $str"/>
+			</Overload>
+		</KeyWord>
+		<KeyWord name="query_posts" func="yes">
+			<Overload retVal="string" descr="WP: Is overly simplistic and problematic way to modify main query of a page by replacing it with new instance of the query.
+It is inefficient (re-runs SQL queries) and will outright fail in some circumstances (especially often when dealing with posts pagination). 
+Any modern WP code should use more reliable methods, like making use of pre_get_posts hook, for this purpose.">
+				<Param name="string|array $wp_query"/>
 			</Overload>
 		</KeyWord>
 		<KeyWord name="quoted_printable_encode" func="yes">
@@ -11778,6 +12232,13 @@ It's mixed with and based on PHP AutoComplete by Geoffray Warnants - http://www.
 				<Param name="[mixed $... ]]"/>
 			</Overload>
 		</KeyWord>
+		<KeyWord name="register_setting" func="yes">
+			<Overload retVal="void" descr="WP: Register a setting and its sanitization callback.">
+				<Param name="string $option_group"/>
+				<Param name="string $option_name"/>
+				<Param name="callback $sanitize_callback"/>
+			</Overload>
+		</KeyWord>
 		<KeyWord name="register_tick_function" func="yes">
 			<Overload retVal="bool">
 				<Param name="callback $function"/>
@@ -11786,7 +12247,7 @@ It's mixed with and based on PHP AutoComplete by Geoffray Warnants - http://www.
 			</Overload>
 		</KeyWord>
 		<KeyWord name="remove_role" func="yes">
-			<Overload retVal="null" descr="Remove role, if it exists.">
+			<Overload retVal="null" descr="WP: Remove role, if it exists.">
 				<Param name="string $role"/>
 			</Overload>
 		</KeyWord>
@@ -11853,13 +12314,13 @@ It's mixed with and based on PHP AutoComplete by Geoffray Warnants - http://www.
 			</Overload>
 		</KeyWord>
 		<KeyWord name="sanitize_category" func="yes">
-			<Overload retVal="object|array" descr="Sanitizes category data based on context.">
+			<Overload retVal="object|array" descr="WP: Sanitizes category data based on context.">
 				<Param name="object|array category"/>
 				<Param name="[string $context=display]"/>
 			</Overload>
 		</KeyWord>
 		<KeyWord name="sanitize_category_field" func="yes">
-			<Overload retVal="mixed" descr="Sanitizes data in single category key field.">
+			<Overload retVal="mixed" descr="WP: Sanitizes data in single category key field.">
 				<Param name="string $field"/>
 				<Param name="mixed $value"/>
 				<Param name="int $category_id"/>
@@ -11867,7 +12328,7 @@ It's mixed with and based on PHP AutoComplete by Geoffray Warnants - http://www.
 			</Overload>
 		</KeyWord>
 		<KeyWord name="sanitize_user_field" func="yes">
-			<Overload retVal="mixed" descr="Sanitize user field based on context.">
+			<Overload retVal="mixed" descr="WP: Sanitize user field based on context.">
 				<Param name="string $field"/>
 				<Param name="mixed $value"/>
 				<Param name="int $user_id"/>
@@ -12047,6 +12508,13 @@ It's mixed with and based on PHP AutoComplete by Geoffray Warnants - http://www.
 			<Overload retVal="bool">
 				<Param name="mixed $var"/>
 				<Param name="string $type"/>
+			</Overload>
+		</KeyWord>
+		<KeyWord name="settings_fields" func="yes">
+			<Overload retVal="void" descr="WP: 
+Output nonce, action, and option_page fields for a settings page. 
+Please note that this function must be called inside of the form tag for the options page.">
+				<Param name="string $option_group"/>
 			</Overload>
 		</KeyWord>
 		<KeyWord name="set_error_handler" func="yes">
@@ -13650,7 +14118,7 @@ It's mixed with and based on PHP AutoComplete by Geoffray Warnants - http://www.
 			</Overload>
 		</KeyWord>
 		<KeyWord name="tag_description" func="yes">
-			<Overload retVal="string" descr="Retrieve tag description.">
+			<Overload retVal="string" descr="WP: Retrieve tag description.">
 				<Param name="[int $tag=0]"/>
 			</Overload>
 		</KeyWord>
@@ -13679,7 +14147,7 @@ It's mixed with and based on PHP AutoComplete by Geoffray Warnants - http://www.
 			</Overload>
 		</KeyWord>
 		<KeyWord name="term_description" func="yes">
-			<Overload retVal="string" descr="Retrieve term description.">
+			<Overload retVal="string" descr="WP: Retrieve term description.">
 				<Param name="[int $term=0"/>
 				<Param name="[string $taxonomy=post_tag]]"/>
 			</Overload>
@@ -13690,30 +14158,30 @@ It's mixed with and based on PHP AutoComplete by Geoffray Warnants - http://www.
 			</Overload>
 		</KeyWord>
 		<KeyWord name="the_author" func="yes">
-			<Overload retVal="string" descr="Display the name of the author of the current post.">
+			<Overload retVal="string" descr="WP: Display the name of the author of the current post.">
 				<Param name="[int $post_ID]"/>
 			</Overload>
 		</KeyWord>
 		<KeyWord name="the_author_meta" func="yes">
-			<Overload retVal="void" descr="Retrieve the requested data of the author of the current post.">
+			<Overload retVal="void" descr="WP: Retrieve the requested data of the author of the current post.">
 				<Param name="[string $field"/>
 				<Param name="[int $user_id=false]]"/>
 			</Overload>
 		</KeyWord>
 		<KeyWord name="the_author_posts_link" func="yes">
-			<Overload retVal="void" descr="Display an HTML link to the author page of the author of the current post.">
+			<Overload retVal="void" descr="WP: Display an HTML link to the author page of the author of the current post.">
 				<Param name="[string $deprecated]"/>
 			</Overload>
 		</KeyWord>
 		<KeyWord name="the_category" func="yes">
-			<Overload retVal="void" descr="Display the category list for the post.">
+			<Overload retVal="void" descr="WP: Display the category list for the post.">
 				<Param name="[string $separator"/>
 				<Param name="[string $parents"/>
 				<Param name="[int $post_id]]]"/>
 			</Overload>
 		</KeyWord>
 		<KeyWord name="the_date" func="yes">
-			<Overload retVal="string" descr="Display the post date.">
+			<Overload retVal="string" descr="WP: Display the post date.">
         	<Param name="[string $format='F j, Y'"/>
 			<Param name="[string $before"/>
 			<Param name="[string $after"/>
@@ -13721,19 +14189,22 @@ It's mixed with and based on PHP AutoComplete by Geoffray Warnants - http://www.
 			</Overload>
 		</KeyWord>
 		<KeyWord name="the_excerpt" func="yes">
-			<Overload retVal="void" descr="Display the post excerpt."></Overload>
+			<Overload retVal="void" descr="WP: Display the post excerpt."></Overload>
 		</KeyWord>
 		<KeyWord name="the_ID" func="yes">
-			<Overload retVal="int" descr="Displays the numeric ID of the current post."></Overload>
+			<Overload retVal="int" descr="WP: Displays the numeric ID of the current post."></Overload>
 		</KeyWord>
 		<KeyWord name="the_modified_author" func="yes">
-			<Overload retVal="string" descr="Display the name of the author who last edited the current post."></Overload>
+			<Overload retVal="string" descr="WP: Display the name of the author who last edited the current post."></Overload>
 		</KeyWord>
 		<KeyWord name="the_permalink" func="yes">
-			<Overload retVal="void" descr="Display the permalink for the current post."></Overload>
+			<Overload retVal="void" descr="WP: Display the permalink for the current post."></Overload>
+		</KeyWord>
+		<KeyWord name="the_post" func="yes">
+			<Overload retVal="void" descr="WP: Iterate the post index in The Loop. Retrieves the next post, sets up the post, sets the 'in the loop' property to true."></Overload>
 		</KeyWord>
 		<KeyWord name="the_shortlink" func="yes">
-			<Overload retVal="void" descr="Display the Short Link for a Post">
+			<Overload retVal="void" descr="WP: Display the Short Link for a Post">
 				<Param name="[string $text"/>
 				<Param name="[string $title"/>
 				<Param name="[string $before"/>
@@ -13741,14 +14212,14 @@ It's mixed with and based on PHP AutoComplete by Geoffray Warnants - http://www.
 			</Overload>
 		</KeyWord>
 		<KeyWord name="the_tags" func="yes">
-			<Overload retVal="string" descr="Retrieve the tags for a post.">
+			<Overload retVal="string" descr="WP: Retrieve the tags for a post.">
 				<Param name="[string $before"/>
 				<Param name="[string $separator"/>
 				<Param name="[string $after]]]"/>
 			</Overload>
 		</KeyWord>
 		<KeyWord name="the_terms" func="yes">
-			<Overload retVal="mixed" descr="Display the terms in a list.">
+			<Overload retVal="mixed" descr="WP: Display the terms in a list.">
 				<Param name="[int $id=0]"/>
 				<Param name="string $taxonomy"/>
 				<Param name="[string $before"/>
@@ -13757,14 +14228,14 @@ It's mixed with and based on PHP AutoComplete by Geoffray Warnants - http://www.
 			</Overload>
 		</KeyWord>
 		<KeyWord name="the_title" func="yes">
-			<Overload retVal="mixed" descr="Display or retrieve the current post title with optional content.">
+			<Overload retVal="mixed" descr="WP: Display or retrieve the current post title with optional content.">
 				<Param name="[string $before"/>
 				<Param name="[string $after"/>
 				<Param name="[bool $echo=true]]]"/>
 			</Overload>
 		</KeyWord>
 		<KeyWord name="the_time" func="yes">
-			<Overload retVal="mixed" descr="Displays the time of the current post">
+			<Overload retVal="mixed" descr="WP: Displays the time of the current post">
 				<Param name="string $format=time_format_settings"/>
 				<Param name="int|object $post=null"/>
 			</Overload>
@@ -14105,8 +14576,16 @@ It's mixed with and based on PHP AutoComplete by Geoffray Warnants - http://www.
 				<Param name="[mixed $...]"/>
 			</Overload>
 		</KeyWord>
+		<KeyWord name="update_post_meta" func="yes">
+			<Overload retVal="mixed" descr="WP: Updates the value of an existing meta key (custom field) for the specified post.">
+				<Param name="int $post_id"/>
+				<Param name="string $meta_key"/>
+				<Param name="mixed $meta_value"/>
+				<Param name="[mixed $prev_value='']"/>
+			</Overload>
+		</KeyWord>
 		<KeyWord name="update_user_meta" func="yes">
-			<Overload retVal="bool" descr="Update user meta field based on user ID.">
+			<Overload retVal="bool" descr="WP: Update user meta field based on user ID.">
 				<Param name="int $user_id"/>
 				<Param name="string $meta_key"/>
 				<Param name="mixed $meta_value"/>
@@ -14114,7 +14593,7 @@ It's mixed with and based on PHP AutoComplete by Geoffray Warnants - http://www.
 			</Overload>
 		</KeyWord>
 		<KeyWord name="update_user_option" func="yes">
-			<Overload retVal="bool" descr="Update user option with global blog capability.">
+			<Overload retVal="bool" descr="WP: Update user option with global blog capability.">
 				<Param name="int $user_id"/>
 				<Param name="int $option_name"/>
 				<Param name="mixed $new_value"/>
@@ -14134,6 +14613,12 @@ It's mixed with and based on PHP AutoComplete by Geoffray Warnants - http://www.
 		<KeyWord name="username_exists" func="yes">
 			<Overload retVal="null|int">
 				<Param name="string $username"/>
+			</Overload>
+		</KeyWord>
+		<KeyWord name="user_can" func="yes">
+			<Overload retVal="bool" descr="WP: Whether a user has capability or role. Similar to current_user_can(), but this function takes a user ID or object as its first parameter.">
+				<Param name="int|obj $user"/>
+				<Param name="string $capability"/>
 			</Overload>
 		</KeyWord>
 		<KeyWord name="user_error"/>
@@ -14159,7 +14644,7 @@ It's mixed with and based on PHP AutoComplete by Geoffray Warnants - http://www.
 			</Overload>
 		</KeyWord>
 		<KeyWord name="validate_username" func="yes">
-			<Overload retVal="bool" descr="Checks whether an username is valid.">
+			<Overload retVal="bool" descr="WP: Checks whether an username is valid.">
 				<Param name="string $username"/>
 			</Overload>
 		</KeyWord>
@@ -14425,14 +14910,49 @@ It's mixed with and based on PHP AutoComplete by Geoffray Warnants - http://www.
 			</Overload>
 		</KeyWord>
 		<KeyWord name="wp_create_user" func="yes">
-			<Overload retVal="int" descr="A simpler way of inserting an user into the database.">
+			<Overload retVal="int" descr="WP: A simpler way of inserting an user into the database.">
 				<Param name="string $username"/>
 				<Param name="string $password"/>
 				<Param name="[string $email]"/>
 			</Overload>
 		</KeyWord>
+		<KeyWord name="wp_create_nonce" func="yes">
+			<Overload retVal="string" descr="WP: 
+Generates and returns a nonce. 
+The nonce is generated based on the current time, the $action argument, and the current user ID.
+Action name should be given in the context to what is taking place. Optional but recommended.">
+				<Param name="[string|int $action=-1]"/>
+			</Overload>
+		</KeyWord>
+		<KeyWord name="wp_enqueue_media" func="yes">
+			<Overload retVal="void" descr="WP: 
+Enqueues all scripts, styles, settings, and templates necessary to use all media JavaScript APIs. 
+This function should be called from the 'admin_enqueue_scripts' action hook, or later.">
+				<Param name="array $args"/>
+			</Overload>
+		</KeyWord>
+		<KeyWord name="wp_enqueue_script" func="yes">
+			<Overload retVal="void" descr="WP: 
+Links a script file to the generated page at the right time according to the script dependencies, 
+if the script has not been already included and if all the dependencies have been registered.">
+				<Param name="string $handle"/>
+				<Param name="[string $src"/>
+				<Param name="[array $deps"/>
+				<Param name="[string|bool $version"/>
+				<Param name="[string|bool $in_footer]]]]]]]"/>
+			</Overload>
+		</KeyWord>
+		<KeyWord name="wp_enqueue_style" func="yes">
+			<Overload retVal="void" descr="WP: A safe way to add/enqueue a stylesheet file to the WordPress generated page.">
+				<Param name="string $handle"/>
+				<Param name="[string|bool $src"/>
+				<Param name="[array $deps"/>
+				<Param name="[string|bool $version"/>
+				<Param name="[string|bool $media]]]]"/>
+			</Overload>
+		</KeyWord>
 		<KeyWord name="wp_get_archives" func="yes">
-			<Overload retVal="int" descr="A simpler way of inserting an user into the database.">
+			<Overload retVal="int" descr="WP: A simpler way of inserting an user into the database.">
 				<Param name="string|array args = array(
 	'type'            => 'monthly',
 	'limit'           => '',
@@ -14445,6 +14965,9 @@ It's mixed with and based on PHP AutoComplete by Geoffray Warnants - http://www.
 )"/>
 			</Overload>
 		</KeyWord>
+		<KeyWord name="wp_get_schedules" func="yes">
+			<Overload retVal="array" descr="WP: Retrieve supported and filtered Cron recurrences."></Overload>
+		</KeyWord>
 		<KeyWord name="wordwrap" func="yes">
 			<Overload retVal="string">
 				<Param name="string $str"/>
@@ -14453,8 +14976,28 @@ It's mixed with and based on PHP AutoComplete by Geoffray Warnants - http://www.
 				<Param name="[bool $cut=false]]]"/>
 			</Overload>
 		</KeyWord>
+		<KeyWord name="wp_deregister_script" func="yes">
+			<Overload retVal="void" descr="WP: Remove a registered script (javascript e.g.:'jquery').">
+				<Param name="string $handle"/>
+			</Overload>
+		</KeyWord>
+		<KeyWord name="wp_deregister_style" func="yes">
+			<Overload retVal="void" descr="WP: Remove a CSS file that was registered with wp_register_style().">
+				<Param name="string $handle"/>
+			</Overload>
+		</KeyWord>
+		<KeyWord name="wp_dequeue_script" func="yes">
+			<Overload retVal="void" descr="WP: Remove an enqueued script.">
+				<Param name="string $handle"/>
+			</Overload>
+		</KeyWord>
+		<KeyWord name="wp_dequeue_style" func="yes">
+			<Overload retVal="void" descr="WP: Remove a CSS file that was enqueued with wp_enqueue_style().">
+				<Param name="string $handle"/>
+			</Overload>
+		</KeyWord>
 		<KeyWord name="wp_dropdown_categories" func="yes">
-			<Overload retVal="array" descr="Display or retrieve the HTML dropdown list of categories.">
+			<Overload retVal="array" descr="WP: Display or retrieve the HTML dropdown list of categories.">
 				<Param name="string|array args=array(
 	'show_option_all' => '',
 	'show_option_none'=> '',
@@ -14479,7 +15022,7 @@ It's mixed with and based on PHP AutoComplete by Geoffray Warnants - http://www.
 			</Overload>
 		</KeyWord>
 		<KeyWord name="wp_dropdown_users" func="yes">
-			<Overload retVal="string|null" descr="Create dropdown HTML content of users.">
+			<Overload retVal="string|null" descr="WP: Create dropdown HTML content of users.">
 				<Param name="string|array args=array(
     'show_option_all'         => null, // string
     'show_option_none'        => null, // string
@@ -14501,8 +15044,31 @@ It's mixed with and based on PHP AutoComplete by Geoffray Warnants - http://www.
 )"/>
 			</Overload>
 		</KeyWord>
+		<KeyWord name="wp_handle_upload" func="yes">
+			<Overload retVal="void" descr="WP: Handle PHP uploads in WordPress, sanitizing file names, checking extensions for mime type, and moving the file to the appropriate directory within the uploads directory.">
+				<Param name="array $file(s)"/>
+				<Param name="array|false $overrides"/>
+				<Param name="string $time"/>
+				<Param name="string $action"/>
+			</Overload>
+		</KeyWord>
+		<KeyWord name="wp_handle_upload_error" func="yes">
+			<Overload retVal="void" descr="WP: ">
+				<Param name="array &amp;$file"/>
+				<Param name="string $message"/>
+			</Overload>
+		</KeyWord>
+		<KeyWord name="wp_handle_upload_prefilter" func="yes">
+			<Overload retVal="void" descr="WP: 
+When you upload Media from your WordPress admin dashboard, wp_handle_upload is called once for each file the user specified.
+wp_handle_upload_prefilter is an admin filter that is called by the wp_handle_upload function.
+The single parameter, $file, represent a single element of the $_FILES array.
+The wp_handle_upload_prefilter provides you with an opportunity to examine or alter the filename before the file is moved to its final location.">
+				<Param name="array $file"/>
+			</Overload>
+		</KeyWord>
 		<KeyWord name="wp_insert_user" func="yes">
-			<Overload retVal="int|WP_Error" descr="Insert an user into the database.">
+			<Overload retVal="int|WP_Error" descr="WP: Insert an user into the database.">
 				<Param name="string|array args=array(
     'ID'             =>'',
     'user_pass'      =>'',
@@ -14524,8 +15090,41 @@ It's mixed with and based on PHP AutoComplete by Geoffray Warnants - http://www.
 )"/>
 			</Overload>
 		</KeyWord>
+		<KeyWord name="wp_is_large_network" func="yes">
+			<Overload retVal="bool" descr="WP: 
+Whether or not we have a large Multisite network. 
+The default criteria for a large network is either more than 10,000 users or more than 10,000 sites.">
+                <Param name="string $sites"/>
+            </Overload>
+		</KeyWord>
+		<KeyWord name="wp_is_mobile" func="yes">
+			<Overload retVal="bool" descr="WP: Checks if the user is visiting using a mobile device.
+Works through the detection of the browser user agent string ($_SERVER['HTTP_USER_AGENT'])"></Overload>
+		</KeyWord>
+		<KeyWord name="wp_is_post_autosave" func="yes">
+			<Overload retVal="bool" descr="WP: Determines if the specified post is an autosave.">
+			    <Param name="int|obj $post_id"/>
+			</Overload>
+		</KeyWord>
+		<KeyWord name="wp_is_post_revision" func="yes">
+			<Overload retVal="bool" descr="WP: Determines if the specified post is a revision.">
+			    <Param name="int|obj $post_id"/>
+			</Overload>
+		</KeyWord>
+		<KeyWord name="wp_is_stream" func="yes">
+			<Overload retVal="bool" descr="WP: Test if a given path is a stream URL.">
+			    <Param name="string $path"/>
+			</Overload>
+		</KeyWord>
+		<KeyWord name="wp_is_writable" func="yes">
+			<Overload retVal="bool" descr="WP: 
+Determine if a path is writable. 
+This is a wrapper function that detects if you're using Microsoft Windows, and uses the correct function for your OS.">
+			    <Param name="string $path"/>
+			</Overload>
+		</KeyWord>
 		<KeyWord name="wp_list_authors" func="yes">
-			<Overload retVal="null|string" descr="List all the authors of the blog, with several options available.">
+			<Overload retVal="null|string" descr="WP: List all the authors of the blog, with several options available.">
 				<Param name="[array $args=array(
     'orderby'       => 'name',
     'order'         => 'ASC',
@@ -14543,7 +15142,7 @@ It's mixed with and based on PHP AutoComplete by Geoffray Warnants - http://www.
 			</Overload>
 		</KeyWord>
 		<KeyWord name="wp_list_categories" func="yes">
-			<Overload retVal="string" descr="Display or retrieve the HTML list of categories.">
+			<Overload retVal="string" descr="WP: Display or retrieve the HTML list of categories.">
 				<Param name="[string|array args=array(
 	'show_option_all'    => '',
 	'orderby'            => 'name',
@@ -14573,7 +15172,7 @@ It's mixed with and based on PHP AutoComplete by Geoffray Warnants - http://www.
 			</Overload>
 		</KeyWord>
 		<KeyWord name="wp_list_pages" func="yes">
-			<Overload retVal="string" descr="Displays all the pages.">
+			<Overload retVal="string" descr="WP: Displays all the pages.">
 				<Param name="[string|array args=array(
 	'authors'      => '',
 	'child_of'     => 0,
@@ -14594,8 +15193,17 @@ It's mixed with and based on PHP AutoComplete by Geoffray Warnants - http://www.
 )]"/>
 			</Overload>
 		</KeyWord>
+		<KeyWord name="wp_localize_script" func="yes">
+			<Overload retVal="void" descr="WP: 
+Localizes a registered script with data for a JavaScript variable.
+This lets you offer properly localized translations of any strings used in your script.">
+				<Param name="string $handle"/>
+				<Param name="string $name"/>
+				<Param name="array $data"/>
+			</Overload>
+		</KeyWord>
 		<KeyWord name="wp_login_form" func="yes">
-			<Overload retVal="void" descr="Provides a simple login form. Pass array('echo'=>false) to return the string.">
+			<Overload retVal="void" descr="WP: Provides a simple login form. Pass array('echo'=>false) to return the string.">
 				<Param name="[array $args=array(
 	'echo'           => true,
 	'redirect'       => site_url( $_SERVER['REQUEST_URI'] ),
@@ -14614,38 +15222,172 @@ It's mixed with and based on PHP AutoComplete by Geoffray Warnants - http://www.
 			</Overload>
 		</KeyWord>
 		<KeyWord name="wp_login_url" func="yes">
-			<Overload retVal="string" descr="Returns the Log In URL.">
+			<Overload retVal="string" descr="WP: Returns the Log In URL.">
 				<Param name="[string $redirect_to"/>
 				<Param name="[bool $force_reauth=false]]"/>
 			</Overload>
 		</KeyWord>
 		<KeyWord name="wp_logout_url" func="yes">
-			<Overload retVal="void" descr="Returns the Log Out URL.">
+			<Overload retVal="void" descr="WP: Returns the Log Out URL.">
 				<Param name="[string $redirect_to]"/>
 			</Overload>
 		</KeyWord>
 		<KeyWord name="wp_lostpassword_url" func="yes">
-			<Overload retVal="void" descr="Returns the Lost Password URL.">
+			<Overload retVal="void" descr="WP: Returns the Lost Password URL.">
 				<Param name="[string $redirect_to]"/>
 			</Overload>
 		</KeyWord>
+		<KeyWord name="wp_mail" func="yes">
+			<Overload retVal="bool" descr="WP: A function to send e-mail, similar to PHP's mail().">
+				<Param name="string|array $to"/>
+				<Param name="string $subject"/>
+				<Param name="string $message"/>
+				<Param name="[string|array $headers]"/>
+				<Param name="[string|array $attachments]"/>
+			</Overload>
+		</KeyWord>
 		<KeyWord name="wp_meta" func="yes">
-			<Overload retVal="void" descr="Theme container function for the 'wp_meta' action.">
+			<Overload retVal="void" descr="WP: Theme container function for the 'wp_meta' action.">
+			</Overload>
+		</KeyWord>
+		<KeyWord name="wp_next_scheduled" func="yes">
+			<Overload retVal="string|bool" descr="WP: Returns the next timestamp for a cron event.">
+			    <Param name="string $hook"/>
+			    <Param name="[array $args]"/>
 			</Overload>
 		</KeyWord>
 		<KeyWord name="wp_no_robots" func="yes">
-			<Overload retVal="void" descr="Display a noindex meta tag.">
+			<Overload retVal="void" descr="WP: Display a noindex meta tag."></Overload>
+		</KeyWord>
+		<KeyWord name="wp_referer_field" func="yes">
+			<Overload retVal="string" descr="WP: 
+Retrieves or displays the referer hidden form field.
+The referer field value will be the value of the 'REQUEST_URI' element of the $_SERVER PHP superglobal variable,
+and the field name will be '_wp_http_referer', in case you wanted to check manually.">
+				<Param name="[boolean echo=true]"/>
+			</Overload>
+		</KeyWord>
+		<KeyWord name="wp_remote_get" func="yes">
+			<Overload retVal="WP_Error|array" descr="WP: Retrieve the raw response from the HTTP request using the GET method. Results include HTTP headers and content.">
+				<Param name="string $url"/>
+				<Param name="[array $args=array(
+    'timeout'     => 5,
+    'redirection' => 5,
+    'httpversion' => '1.0',
+    'user-agent'  => 'WordPress/' . $wp_version . '; ' . get_bloginfo( 'url' ),
+    'blocking'    => true,
+    'headers'     => array(),
+    'cookies'     => array(),
+    'body'        => null,
+    'compress'    => false,
+    'decompress'  => true,
+    'sslverify'   => true,
+    'stream'      => false,
+    'filename'    => null
+)]"/>
+			</Overload>
+		</KeyWord>
+		<KeyWord name="wp_remote_head" func="yes">
+			<Overload retVal="WP_Error|array" descr="WP: Retrieve the raw response from the HTTP request using the GET method. Results include HTTP headers and content.">
+				<Param name="string $url"/>
+				<Param name="[array $args=array(method: HEAD, timeout: 5, redirection: 5, httpversion: 1.0, blocking: true, headers: array(), body: null, cookies: array())]"/>
+			</Overload>
+		</KeyWord>
+		<KeyWord name="wp_remote_post" func="yes">
+			<Overload retVal="WP_Error|array" descr="WP: Retrieves a URL using the HTTP POST method, returning results in an array. Results include HTTP headers and content.">
+				<Param name="string $url"/>
+				<Param name="[array $args=array(
+	'method' => 'POST',
+	'timeout' => 45,
+	'redirection' => 5,
+	'httpversion' => '1.0',
+	'blocking' => true,
+	'headers' => array(),
+	'body' => array( 'username' => 'bob', 'password' => '1234xyz' ),
+	'cookies' => array()
+    )
+)]"/>
+			</Overload>
+		</KeyWord>
+		<KeyWord name="wp_remote_request" func="yes">
+			<Overload retVal="WP_Error|array" descr="WP: Retrieve the raw response from the HTTP request.">
+				<Param name="string $url"/>
+				<Param name="[array $args=array(
+    'headers'  => array(),
+    'response' => array(
+        'code'    => int,
+        'message' => string
+    )
+)]"/>
 			</Overload>
 		</KeyWord>
 		<KeyWord name="wp_register" func="yes">
-			<Overload retVal="void" descr="Display the Registration or Admin link.">
+			<Overload retVal="void" descr="WP: Display the Registration or Admin link.">
 				<Param name="[string $before=&lt;li&gt;"/>
 				<Param name="[string $after=&lt;/li&gt;"/>
 				<Param name="[boolean echo=true]]]"/>
 			</Overload>
 		</KeyWord>
+		<KeyWord name="wp_register_script" func="yes">
+			<Overload retVal="void" descr="WP: Registers a script file in WordPress to be linked to a page later using the wp_enqueue_script() function, which safely handles the script dependencies.">
+				<Param name="string $handle"/>
+				<Param name="string $src"/>
+				<Param name="[array $deps"/>
+				<Param name="[string $version"/>
+				<Param name="[bool $in_footer]]]"/>
+			</Overload>
+		</KeyWord>
+		<KeyWord name="wp_register_style" func="yes">
+			<Overload retVal="void" descr="WP: A safe way to register a CSS style file for later use with wp_enqueue_style().">
+				<Param name="string $handle"/>
+				<Param name="string $src"/>
+				<Param name="[array $deps"/>
+				<Param name="[string|bool $version"/>
+				<Param name="[string $media]]]"/>
+			</Overload>
+		</KeyWord>
+		<KeyWord name="wp_reset_query" func="yes">
+			<Overload retVal="void" descr="WP: restores the $wp_query and global post data to the original main query.
+This function should be called after query_posts(), if you must use that function.
+As noted in the examples below, it's heavily encouraged to use the pre_get_posts 
+filter to alter query parameters before the query is made."></Overload>
+		</KeyWord>
+		<KeyWord name="wp_schedule_event" func="yes">
+			<Overload retVal="void" descr="WP: 
+Schedules a hook which will be executed by the WordPress actions core on a specific interval, specified by you.
+The action will trigger when someone visits your WordPress site, if the scheduled time has passed.">
+			    <Param name="int $timestamp"/>
+			    <Param name="string $recurrance"/>
+			    <Param name="string $hook"/>
+			    <Param name="[array $args]"/>
+			</Overload>
+		</KeyWord>
+		<KeyWord name="wp_schedule_single_event" func="yes">
+			<Overload retVal="void" descr="WP: 
+Schedules a hook which will be executed once by the WordPress actions core at a time which you specify. 
+The action will fire off when someone visits your WordPress site, if the schedule time has passed.">
+			    <Param name="int $timestamp"/>
+			    <Param name="string $hook"/>
+			    <Param name="[array $args]"/>
+			</Overload>
+		</KeyWord>
+		<KeyWord name="wp_script_is" func="yes">
+			<Overload retVal="bool" descr="WP: 
+Determine if a script has been registered, enqueued, printed, or is waiting to be printed. 
+Very useful when registering/enqueing scripts in plugins to avoid conflicts with other plugin scripts.">
+			    <Param name="string $handle"/>
+			    <Param name="[string $list='enqueued']"/>
+			</Overload>
+		</KeyWord>
+		<KeyWord name="wp_style_is" func="yes">
+			<Overload retVal="bool" descr="WP: 
+Determine if a style has been registered, queued, printed, or is waiting to be printed.">
+			    <Param name="string $handle"/>
+			    <Param name="[string $list='enqueued']"/>
+			</Overload>
+		</KeyWord>
 		<KeyWord name="wp_tag_cloud" func="yes">
-			<Overload retVal="array" descr="Display tag cloud.">
+			<Overload retVal="array" descr="WP: Display tag cloud.">
 				<Param name="[string|array args=array(
     'smallest'                  => 8,
     'largest'                   => 22,
@@ -14666,14 +15408,14 @@ It's mixed with and based on PHP AutoComplete by Geoffray Warnants - http://www.
 			</Overload>
 		</KeyWord>
 		<KeyWord name="wp_title" func="yes">
-			<Overload retVal="string|null" descr="Display or retrieve page title for all areas of blog.">
+			<Overload retVal="string|null" descr="WP: Display or retrieve page title for all areas of blog.">
 				<Param name="[string $separator=&amp;raquo;"/>
 				<Param name="[bool $display=true"/>
 				<Param name="[string $seplocation=right]]]"/>
 			</Overload>
 		</KeyWord>
 		<KeyWord name="wp_update_user" func="yes">
-			<Overload retVal="int|WP_Error" descr="Insert an user in the database.">
+			<Overload retVal="int|WP_Error" descr="WP: Insert an user in the database.">
 				<Param name="string|array args=array(
     'ID'             =>'',
     'user_pass'      =>'',
@@ -14693,6 +15435,21 @@ It's mixed with and based on PHP AutoComplete by Geoffray Warnants - http://www.
     'aim'            =>'',
     'yim'            =>'',
 )"/>
+			</Overload>
+		</KeyWord>
+		<KeyWord name="wp_upload_dir" func="yes">
+			<Overload retVal="array" descr="WP: 
+Returns an array of key => value pairs containing path information on the currently configured uploads directory.
+Array()
+    'path'   - base directory and sub directory or full path to upload directory. 
+    'url'    - base url and sub directory or absolute URL to upload directory. 
+    'subdir' - sub directory if uploads use year/month folders option is on. 
+    'basedir'- path without subdir. 
+    'baseurl'- URL path without subdir. 
+    'error'  - set to false."> 
+				<Param name="[string $time=null"/>
+				<Param name="[bool $display=true"/>
+				<Param name="[string $seplocation=right]]]"/>
 			</Overload>
 		</KeyWord>
 		<KeyWord name="xmlrpc_decode" func="yes">
