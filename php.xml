@@ -54,6 +54,13 @@ It's mixed with and based on PHP AutoComplete by Geoffray Warnants - http://www.
 				<Param name="[int $accepted_args=1]]"/>
 			</Overload>
 		</KeyWord>
+		<KeyWord name="add_blog_option" func="yes">
+			<Overload retVal="int" descr="Add a new option for a given blog id.">
+				<Param name="int $id"/>
+				<Param name="string $option"/>
+				<Param name="[mixed $value]"/>
+			</Overload>
+		</KeyWord>
 		<KeyWord name="add_filter" func="yes">
 			<Overload retVal="bool" descr="WP: Hooks a function or method to a specific filter action.">
 				<Param name="string $tag"/>
